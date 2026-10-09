@@ -1,0 +1,41 @@
+# dependencies
+node_modules/
+
+# builds
+dist/
+dist-ssr/
+build/
+.next/
+out/
+*.tsbuildinfo
+
+# env
+.env
+.env.*
+
+# caches / logs
+.cache/
+.vite/
+.eslintcache
+*.log
+npm-debug.log*
+pnpm-debug.log*
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.vscode/*
+!.vscode/extensions.json
+.idea/
+
+# Claude Code local settings
+.claude/settings.local.json
+
+# Original (unoptimized) assets: only optimized copies in public/assets/ are published
+/Certificaciones/
+/public/CV/
+/public/*.jpeg
+/public/*.jpg
+/public/*.png
+/public/video_landing/
+/public/animales/
