@@ -1,0 +1,262 @@
+{
+  "titulo-tecnico-turismo-aventura": {
+    "original": "TITULO TURISMO AVENTURA.pdf",
+    "type": "pdf",
+    "file": "/assets/certificaciones/titulo-tecnico-turismo-aventura.pdf",
+    "redacted": true,
+    "width": 1224,
+    "height": 1584,
+    "thumb": {
+      "md": {
+        "src": "/assets/certificaciones/titulo-tecnico-turismo-aventura-md.webp",
+        "width": 900,
+        "height": 1361
+      },
+      "sm": {
+        "src": "/assets/certificaciones/titulo-tecnico-turismo-aventura-sm.webp",
+        "width": 420,
+        "height": 635
+      }
+    }
+  },
+  "guia-de-turismo": {
+    "original": "Certificado Guía de turismo.pdf",
+    "type": "pdf",
+    "file": "/assets/certificaciones/guia-de-turismo.pdf",
+    "redacted": true,
+    "width": 1224,
+    "height": 1584,
+    "thumb": {
+      "md": {
+        "src": "/assets/certificaciones/guia-de-turismo-md.webp",
+        "width": 900,
+        "height": 988
+      },
+      "sm": {
+        "src": "/assets/certificaciones/guia-de-turismo-sm.webp",
+        "width": 420,
+        "height": 461
+      }
+    }
+  },
+  "primeros-auxilios-lugares-remotos": {
+    "original": "Certificado Aider.pdf",
+    "type": "pdf",
+    "file": "/assets/certificaciones/primeros-auxilios-lugares-remotos.pdf",
+    "redacted": false,
+    "width": 1684,
+    "height": 1191,
+    "thumb": {
+      "md": {
+        "src": "/assets/certificaciones/primeros-auxilios-lugares-remotos-md.webp",
+        "width": 900,
+        "height": 637
+      },
+      "sm": {
+        "src": "/assets/certificaciones/primeros-auxilios-lugares-remotos-sm.webp",
+        "width": 420,
+        "height": 297
+      }
+    }
+  },
+  "credencial-primeros-auxilios-lugares-remotos": {
+    "original": "Credencial Aider.pdf",
+    "type": "pdf",
+    "file": "/assets/certificaciones/credencial-primeros-auxilios-lugares-remotos.pdf",
+    "redacted": false,
+    "width": 1684,
+    "height": 1191,
+    "thumb": {
+      "md": {
+        "src": "/assets/certificaciones/credencial-primeros-auxilios-lugares-remotos-md.webp",
+        "width": 900,
+        "height": 301
+      },
+      "sm": {
+        "src": "/assets/certificaciones/credencial-primeros-auxilios-lugares-remotos-sm.webp",
+        "width": 420,
+        "height": 141
+      }
+    }
+  },
+  "biodiversidad-conservacion-humedales": {
+    "original": "Curso Humedales.pdf",
+    "type": "pdf",
+    "file": "/assets/certificaciones/biodiversidad-conservacion-humedales.pdf",
+    "redacted": false,
+    "width": 1584,
+    "height": 1224,
+    "thumb": {
+      "md": {
+        "src": "/assets/certificaciones/biodiversidad-conservacion-humedales-md.webp",
+        "width": 900,
+        "height": 696
+      },
+      "sm": {
+        "src": "/assets/certificaciones/biodiversidad-conservacion-humedales-sm.webp",
+        "width": 420,
+        "height": 325
+      }
+    }
+  },
+  "glaciares-chilenos": {
+    "original": "Certificado Glaciares Chilenos-3 (1).pdf",
+    "type": "pdf",
+    "file": "/assets/certificaciones/glaciares-chilenos.pdf",
+    "redacted": false,
+    "width": 1191,
+    "height": 839,
+    "thumb": {
+      "md": {
+        "src": "/assets/certificaciones/glaciares-chilenos-md.webp",
+        "width": 900,
+        "height": 634
+      },
+      "sm": {
+        "src": "/assets/certificaciones/glaciares-chilenos-sm.webp",
+        "width": 420,
+        "height": 296
+      }
+    }
+  },
+  "introduccion-derecho-ambiental": {
+    "original": "Certificados derecho ambiental juntos-1 (1).pdf",
+    "type": "pdf",
+    "file": "/assets/certificaciones/introduccion-derecho-ambiental.pdf",
+    "redacted": false,
+    "width": 1584,
+    "height": 1224,
+    "thumb": {
+      "md": {
+        "src": "/assets/certificaciones/introduccion-derecho-ambiental-md.webp",
+        "width": 900,
+        "height": 637
+      },
+      "sm": {
+        "src": "/assets/certificaciones/introduccion-derecho-ambiental-sm.webp",
+        "width": 420,
+        "height": 297
+      }
+    }
+  },
+  "sociologia-del-antropoceno": {
+    "original": "Certificados sociología del antropoceno-2 (1).pdf",
+    "type": "pdf",
+    "file": "/assets/certificaciones/sociologia-del-antropoceno.pdf",
+    "redacted": false,
+    "width": 1584,
+    "height": 1224,
+    "thumb": {
+      "md": {
+        "src": "/assets/certificaciones/sociologia-del-antropoceno-md.webp",
+        "width": 900,
+        "height": 645
+      },
+      "sm": {
+        "src": "/assets/certificaciones/sociologia-del-antropoceno-sm.webp",
+        "width": 420,
+        "height": 301
+      }
+    }
+  },
+  "academia-liderazgo-juventudes-protagonistas": {
+    "original": "Juventudes Protagonistas.png",
+    "type": "image",
+    "file": "/assets/certificaciones/academia-liderazgo-juventudes-protagonistas.webp",
+    "redacted": false,
+    "width": 1600,
+    "height": 1364,
+    "thumb": {
+      "md": {
+        "src": "/assets/certificaciones/academia-liderazgo-juventudes-protagonistas-md.webp",
+        "width": 900,
+        "height": 767
+      },
+      "sm": {
+        "src": "/assets/certificaciones/academia-liderazgo-juventudes-protagonistas-sm.webp",
+        "width": 420,
+        "height": 358
+      }
+    }
+  },
+  "capacitacion-no-discriminacion": {
+    "original": "Certificado Capacitación No Discriminación Juegos Parapanamericanos Santiago 2023 Alberto Andrés Astudillo Venegas.pdf",
+    "type": "pdf",
+    "file": "/assets/certificaciones/capacitacion-no-discriminacion.pdf",
+    "redacted": false,
+    "width": 1440,
+    "height": 1080,
+    "thumb": {
+      "md": {
+        "src": "/assets/certificaciones/capacitacion-no-discriminacion-md.webp",
+        "width": 900,
+        "height": 676
+      },
+      "sm": {
+        "src": "/assets/certificaciones/capacitacion-no-discriminacion-sm.webp",
+        "width": 420,
+        "height": 316
+      }
+    }
+  },
+  "capacitacion-voluntariado-santiago-2023": {
+    "original": "Diploma Panamericanos -Alberto Andres Astudillo Venegas (1).pdf",
+    "type": "pdf",
+    "file": "/assets/certificaciones/capacitacion-voluntariado-santiago-2023.pdf",
+    "redacted": false,
+    "width": 1684,
+    "height": 1191,
+    "thumb": {
+      "md": {
+        "src": "/assets/certificaciones/capacitacion-voluntariado-santiago-2023-md.webp",
+        "width": 900,
+        "height": 617
+      },
+      "sm": {
+        "src": "/assets/certificaciones/capacitacion-voluntariado-santiago-2023-sm.webp",
+        "width": 420,
+        "height": 288
+      }
+    }
+  },
+  "participacion-santiago-2023": {
+    "original": "Certificado Participacion Santiago2023.pdf",
+    "type": "pdf",
+    "file": "/assets/certificaciones/participacion-santiago-2023.pdf",
+    "redacted": false,
+    "width": 1684,
+    "height": 1190,
+    "thumb": {
+      "md": {
+        "src": "/assets/certificaciones/participacion-santiago-2023-md.webp",
+        "width": 900,
+        "height": 558
+      },
+      "sm": {
+        "src": "/assets/certificaciones/participacion-santiago-2023-sm.webp",
+        "width": 420,
+        "height": 261
+      }
+    }
+  },
+  "inspector-educacional": {
+    "original": "Certificado Diploma Inspector Educacional.pdf",
+    "type": "pdf",
+    "file": "/assets/certificaciones/inspector-educacional.pdf",
+    "redacted": false,
+    "width": 1224,
+    "height": 1584,
+    "thumb": {
+      "md": {
+        "src": "/assets/certificaciones/inspector-educacional-md.webp",
+        "width": 900,
+        "height": 1304
+      },
+      "sm": {
+        "src": "/assets/certificaciones/inspector-educacional-sm.webp",
+        "width": 420,
+        "height": 609
+      }
+    }
+  }
+}

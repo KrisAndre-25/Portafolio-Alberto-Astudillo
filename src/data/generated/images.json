@@ -1,0 +1,893 @@
+{
+  "animales/abejaruco": {
+    "variants": {
+      "cutout": {
+        "src": "/assets/animales/abejaruco.webp",
+        "width": 334,
+        "height": 258
+      },
+      "plate": {
+        "src": "/assets/animales/abejaruco-plate.webp",
+        "width": 1600,
+        "height": 1000
+      },
+      "plateSm": {
+        "src": "/assets/animales/abejaruco-plate-sm.webp",
+        "width": 320,
+        "height": 200
+      }
+    },
+    "width": 334,
+    "height": 258
+  },
+  "animales/aves-fiordo-comau": {
+    "variants": {
+      "cutout": {
+        "src": "/assets/animales/aves-fiordo-comau.webp",
+        "width": 900,
+        "height": 418
+      },
+      "plate": {
+        "src": "/assets/animales/aves-fiordo-comau-plate.webp",
+        "width": 1600,
+        "height": 1000
+      },
+      "plateSm": {
+        "src": "/assets/animales/aves-fiordo-comau-plate-sm.webp",
+        "width": 320,
+        "height": 200
+      }
+    },
+    "width": 900,
+    "height": 418
+  },
+  "animales/aves-lamina": {
+    "variants": {
+      "cutout": {
+        "src": "/assets/animales/aves-lamina.webp",
+        "width": 678,
+        "height": 248
+      },
+      "plate": {
+        "src": "/assets/animales/aves-lamina-plate.webp",
+        "width": 1600,
+        "height": 1000
+      },
+      "plateSm": {
+        "src": "/assets/animales/aves-lamina-plate-sm.webp",
+        "width": 320,
+        "height": 200
+      }
+    },
+    "width": 678,
+    "height": 248
+  },
+  "animales/cometocino-de-gay": {
+    "variants": {
+      "cutout": {
+        "src": "/assets/animales/cometocino-de-gay.webp",
+        "width": 806,
+        "height": 640
+      },
+      "plate": {
+        "src": "/assets/animales/cometocino-de-gay-plate.webp",
+        "width": 1600,
+        "height": 1000
+      },
+      "plateSm": {
+        "src": "/assets/animales/cometocino-de-gay-plate-sm.webp",
+        "width": 320,
+        "height": 200
+      }
+    },
+    "width": 806,
+    "height": 640
+  },
+  "animales/cometocino-patagonico": {
+    "variants": {
+      "cutout": {
+        "src": "/assets/animales/cometocino-patagonico.webp",
+        "width": 853,
+        "height": 828
+      },
+      "plate": {
+        "src": "/assets/animales/cometocino-patagonico-plate.webp",
+        "width": 1600,
+        "height": 1000
+      },
+      "plateSm": {
+        "src": "/assets/animales/cometocino-patagonico-plate-sm.webp",
+        "width": 320,
+        "height": 200
+      }
+    },
+    "width": 853,
+    "height": 828
+  },
+  "animales/condor": {
+    "variants": {
+      "cutout": {
+        "src": "/assets/animales/condor.webp",
+        "width": 360,
+        "height": 237
+      },
+      "plate": {
+        "src": "/assets/animales/condor-plate.webp",
+        "width": 1600,
+        "height": 1000
+      },
+      "plateSm": {
+        "src": "/assets/animales/condor-plate-sm.webp",
+        "width": 320,
+        "height": 200
+      }
+    },
+    "width": 360,
+    "height": 237
+  },
+  "animales/conejo": {
+    "variants": {
+      "cutout": {
+        "src": "/assets/animales/conejo.webp",
+        "width": 290,
+        "height": 510
+      },
+      "plate": {
+        "src": "/assets/animales/conejo-plate.webp",
+        "width": 1600,
+        "height": 1000
+      },
+      "plateSm": {
+        "src": "/assets/animales/conejo-plate-sm.webp",
+        "width": 320,
+        "height": 200
+      }
+    },
+    "width": 290,
+    "height": 510
+  },
+  "animales/picaflor": {
+    "variants": {
+      "cutout": {
+        "src": "/assets/animales/picaflor.webp",
+        "width": 296,
+        "height": 322
+      },
+      "plate": {
+        "src": "/assets/animales/picaflor-plate.webp",
+        "width": 1600,
+        "height": 1000
+      },
+      "plateSm": {
+        "src": "/assets/animales/picaflor-plate-sm.webp",
+        "width": 320,
+        "height": 200
+      }
+    },
+    "width": 296,
+    "height": 322
+  },
+  "animales/puma": {
+    "variants": {
+      "cutout": {
+        "src": "/assets/animales/puma.webp",
+        "width": 673,
+        "height": 636
+      },
+      "plate": {
+        "src": "/assets/animales/puma-plate.webp",
+        "width": 1600,
+        "height": 1000
+      },
+      "plateSm": {
+        "src": "/assets/animales/puma-plate-sm.webp",
+        "width": 320,
+        "height": 200
+      }
+    },
+    "width": 673,
+    "height": 636
+  },
+  "animales/zorzal": {
+    "variants": {
+      "cutout": {
+        "src": "/assets/animales/zorzal.webp",
+        "width": 884,
+        "height": 725
+      },
+      "plate": {
+        "src": "/assets/animales/zorzal-plate.webp",
+        "width": 1600,
+        "height": 1000
+      },
+      "plateSm": {
+        "src": "/assets/animales/zorzal-plate-sm.webp",
+        "width": 320,
+        "height": 200
+      }
+    },
+    "width": 884,
+    "height": 725
+  },
+  "hitos/asics-golden-run-21k-01": {
+    "original": "Asics Golden Run 21K.jpeg",
+    "variants": {
+      "lg": {
+        "src": "/assets/hitos/asics-golden-run-21k-01-lg.webp",
+        "width": 1280,
+        "height": 853
+      },
+      "md": {
+        "src": "/assets/hitos/asics-golden-run-21k-01-md.webp",
+        "width": 1200,
+        "height": 800
+      },
+      "sm": {
+        "src": "/assets/hitos/asics-golden-run-21k-01-sm.webp",
+        "width": 480,
+        "height": 320
+      }
+    },
+    "width": 1280,
+    "height": 853
+  },
+  "hitos/asics-golden-run-21k-02": {
+    "original": "Asics Golden Run 21K (2).jpeg",
+    "variants": {
+      "lg": {
+        "src": "/assets/hitos/asics-golden-run-21k-02-lg.webp",
+        "width": 853,
+        "height": 1280
+      },
+      "md": {
+        "src": "/assets/hitos/asics-golden-run-21k-02-md.webp",
+        "width": 853,
+        "height": 1280
+      },
+      "sm": {
+        "src": "/assets/hitos/asics-golden-run-21k-02-sm.webp",
+        "width": 480,
+        "height": 720
+      }
+    },
+    "width": 853,
+    "height": 1280
+  },
+  "hitos/asics-golden-run-21k-03": {
+    "original": "Asics Golden Run 21K (3).jpeg",
+    "variants": {
+      "lg": {
+        "src": "/assets/hitos/asics-golden-run-21k-03-lg.webp",
+        "width": 853,
+        "height": 1280
+      },
+      "md": {
+        "src": "/assets/hitos/asics-golden-run-21k-03-md.webp",
+        "width": 853,
+        "height": 1280
+      },
+      "sm": {
+        "src": "/assets/hitos/asics-golden-run-21k-03-sm.webp",
+        "width": 480,
+        "height": 720
+      }
+    },
+    "width": 853,
+    "height": 1280
+  },
+  "hitos/asics-golden-run-21k-04": {
+    "original": "Asics Golden Run 21K (4).jpeg",
+    "variants": {
+      "lg": {
+        "src": "/assets/hitos/asics-golden-run-21k-04-lg.webp",
+        "width": 853,
+        "height": 1280
+      },
+      "md": {
+        "src": "/assets/hitos/asics-golden-run-21k-04-md.webp",
+        "width": 853,
+        "height": 1280
+      },
+      "sm": {
+        "src": "/assets/hitos/asics-golden-run-21k-04-sm.webp",
+        "width": 480,
+        "height": 720
+      }
+    },
+    "width": 853,
+    "height": 1280
+  },
+  "hitos/asics-golden-run-21k-05": {
+    "original": "Asics Golden Run 21K (5).jpeg",
+    "variants": {
+      "lg": {
+        "src": "/assets/hitos/asics-golden-run-21k-05-lg.webp",
+        "width": 853,
+        "height": 1280
+      },
+      "md": {
+        "src": "/assets/hitos/asics-golden-run-21k-05-md.webp",
+        "width": 853,
+        "height": 1280
+      },
+      "sm": {
+        "src": "/assets/hitos/asics-golden-run-21k-05-sm.webp",
+        "width": 480,
+        "height": 720
+      }
+    },
+    "width": 853,
+    "height": 1280
+  },
+  "hitos/corrida-canina-2k-01": {
+    "original": "Corrida Canina 2K.jpeg",
+    "variants": {
+      "lg": {
+        "src": "/assets/hitos/corrida-canina-2k-01-lg.webp",
+        "width": 853,
+        "height": 1280
+      },
+      "md": {
+        "src": "/assets/hitos/corrida-canina-2k-01-md.webp",
+        "width": 853,
+        "height": 1280
+      },
+      "sm": {
+        "src": "/assets/hitos/corrida-canina-2k-01-sm.webp",
+        "width": 480,
+        "height": 720
+      }
+    },
+    "width": 853,
+    "height": 1280
+  },
+  "hitos/corrida-canina-2k-02": {
+    "original": "Corrida Canina 2K(2).jpeg",
+    "variants": {
+      "lg": {
+        "src": "/assets/hitos/corrida-canina-2k-02-lg.webp",
+        "width": 854,
+        "height": 1280
+      },
+      "md": {
+        "src": "/assets/hitos/corrida-canina-2k-02-md.webp",
+        "width": 854,
+        "height": 1280
+      },
+      "sm": {
+        "src": "/assets/hitos/corrida-canina-2k-02-sm.webp",
+        "width": 480,
+        "height": 719
+      }
+    },
+    "width": 854,
+    "height": 1280
+  },
+  "hitos/corrida-canina-2k-03": {
+    "original": "Corrida Canina 2K(3).jpeg",
+    "variants": {
+      "lg": {
+        "src": "/assets/hitos/corrida-canina-2k-03-lg.webp",
+        "width": 1280,
+        "height": 853
+      },
+      "md": {
+        "src": "/assets/hitos/corrida-canina-2k-03-md.webp",
+        "width": 1200,
+        "height": 800
+      },
+      "sm": {
+        "src": "/assets/hitos/corrida-canina-2k-03-sm.webp",
+        "width": 480,
+        "height": 320
+      }
+    },
+    "width": 1280,
+    "height": 853
+  },
+  "hitos/corrida-mapocho-rio-arriba-10k-01": {
+    "original": "Corrida Mapocho Rio Arriba 10K.jpeg",
+    "variants": {
+      "lg": {
+        "src": "/assets/hitos/corrida-mapocho-rio-arriba-10k-01-lg.webp",
+        "width": 1280,
+        "height": 853
+      },
+      "md": {
+        "src": "/assets/hitos/corrida-mapocho-rio-arriba-10k-01-md.webp",
+        "width": 1200,
+        "height": 800
+      },
+      "sm": {
+        "src": "/assets/hitos/corrida-mapocho-rio-arriba-10k-01-sm.webp",
+        "width": 480,
+        "height": 320
+      }
+    },
+    "width": 1280,
+    "height": 853
+  },
+  "hitos/corrida-pride-run-7k-01": {
+    "original": "Corrida Pride Run 7K.jpeg",
+    "variants": {
+      "lg": {
+        "src": "/assets/hitos/corrida-pride-run-7k-01-lg.webp",
+        "width": 1280,
+        "height": 720
+      },
+      "md": {
+        "src": "/assets/hitos/corrida-pride-run-7k-01-md.webp",
+        "width": 1200,
+        "height": 675
+      },
+      "sm": {
+        "src": "/assets/hitos/corrida-pride-run-7k-01-sm.webp",
+        "width": 480,
+        "height": 270
+      }
+    },
+    "width": 1280,
+    "height": 720
+  },
+  "hitos/corrida-pride-run-7k-02": {
+    "original": "Corrida Pride Run 7K(2).jpeg",
+    "variants": {
+      "lg": {
+        "src": "/assets/hitos/corrida-pride-run-7k-02-lg.webp",
+        "width": 853,
+        "height": 1280
+      },
+      "md": {
+        "src": "/assets/hitos/corrida-pride-run-7k-02-md.webp",
+        "width": 853,
+        "height": 1280
+      },
+      "sm": {
+        "src": "/assets/hitos/corrida-pride-run-7k-02-sm.webp",
+        "width": 480,
+        "height": 720
+      }
+    },
+    "width": 853,
+    "height": 1280
+  },
+  "hitos/corrida-pride-run-7k-03": {
+    "original": "Corrida Pride Run 7K(3).jpeg",
+    "variants": {
+      "lg": {
+        "src": "/assets/hitos/corrida-pride-run-7k-03-lg.webp",
+        "width": 960,
+        "height": 1280
+      },
+      "md": {
+        "src": "/assets/hitos/corrida-pride-run-7k-03-md.webp",
+        "width": 960,
+        "height": 1280
+      },
+      "sm": {
+        "src": "/assets/hitos/corrida-pride-run-7k-03-sm.webp",
+        "width": 480,
+        "height": 640
+      }
+    },
+    "width": 960,
+    "height": 1280
+  },
+  "hitos/cumbre-cerro-leoneras-01": {
+    "original": "Cumbre Cerro Leoneras, 4.954 m.s.n.m.jpeg",
+    "variants": {
+      "lg": {
+        "src": "/assets/hitos/cumbre-cerro-leoneras-01-lg.webp",
+        "width": 993,
+        "height": 1317
+      },
+      "md": {
+        "src": "/assets/hitos/cumbre-cerro-leoneras-01-md.webp",
+        "width": 993,
+        "height": 1317
+      },
+      "sm": {
+        "src": "/assets/hitos/cumbre-cerro-leoneras-01-sm.webp",
+        "width": 480,
+        "height": 637
+      }
+    },
+    "width": 993,
+    "height": 1317
+  },
+  "hitos/gp-parque-cordillera-01": {
+    "original": "GP Parque Cordillera.jpeg",
+    "variants": {
+      "lg": {
+        "src": "/assets/hitos/gp-parque-cordillera-01-lg.webp",
+        "width": 1202,
+        "height": 1600
+      },
+      "md": {
+        "src": "/assets/hitos/gp-parque-cordillera-01-md.webp",
+        "width": 1200,
+        "height": 1597
+      },
+      "sm": {
+        "src": "/assets/hitos/gp-parque-cordillera-01-sm.webp",
+        "width": 480,
+        "height": 639
+      }
+    },
+    "width": 1202,
+    "height": 1600
+  },
+  "hitos/marley-coffee-stgo-10k-01": {
+    "original": "Marley Coffe Stgo 10K.jpeg",
+    "variants": {
+      "lg": {
+        "src": "/assets/hitos/marley-coffee-stgo-10k-01-lg.webp",
+        "width": 853,
+        "height": 1280
+      },
+      "md": {
+        "src": "/assets/hitos/marley-coffee-stgo-10k-01-md.webp",
+        "width": 853,
+        "height": 1280
+      },
+      "sm": {
+        "src": "/assets/hitos/marley-coffee-stgo-10k-01-sm.webp",
+        "width": 480,
+        "height": 720
+      }
+    },
+    "width": 853,
+    "height": 1280
+  },
+  "hitos/marley-coffee-stgo-10k-02": {
+    "original": "Marley Coffe Stgo 10K (2).jpeg",
+    "variants": {
+      "lg": {
+        "src": "/assets/hitos/marley-coffee-stgo-10k-02-lg.webp",
+        "width": 853,
+        "height": 1280
+      },
+      "md": {
+        "src": "/assets/hitos/marley-coffee-stgo-10k-02-md.webp",
+        "width": 853,
+        "height": 1280
+      },
+      "sm": {
+        "src": "/assets/hitos/marley-coffee-stgo-10k-02-sm.webp",
+        "width": 480,
+        "height": 720
+      }
+    },
+    "width": 853,
+    "height": 1280
+  },
+  "hitos/marley-coffee-stgo-10k-03": {
+    "original": "Marley Coffe Stgo 10K (3).jpeg",
+    "variants": {
+      "lg": {
+        "src": "/assets/hitos/marley-coffee-stgo-10k-03-lg.webp",
+        "width": 853,
+        "height": 1280
+      },
+      "md": {
+        "src": "/assets/hitos/marley-coffee-stgo-10k-03-md.webp",
+        "width": 853,
+        "height": 1280
+      },
+      "sm": {
+        "src": "/assets/hitos/marley-coffee-stgo-10k-03-sm.webp",
+        "width": 480,
+        "height": 720
+      }
+    },
+    "width": 853,
+    "height": 1280
+  },
+  "hitos/marley-coffee-stgo-10k-04": {
+    "original": "Marley Coffe Stgo 10K (4).jpeg",
+    "variants": {
+      "lg": {
+        "src": "/assets/hitos/marley-coffee-stgo-10k-04-lg.webp",
+        "width": 1280,
+        "height": 853
+      },
+      "md": {
+        "src": "/assets/hitos/marley-coffee-stgo-10k-04-md.webp",
+        "width": 1200,
+        "height": 800
+      },
+      "sm": {
+        "src": "/assets/hitos/marley-coffee-stgo-10k-04-sm.webp",
+        "width": 480,
+        "height": 320
+      }
+    },
+    "width": 1280,
+    "height": 853
+  },
+  "hitos/marley-coffee-stgo-10k-05": {
+    "original": "Marley Coffe Stgo 10K (5).jpeg",
+    "variants": {
+      "lg": {
+        "src": "/assets/hitos/marley-coffee-stgo-10k-05-lg.webp",
+        "width": 853,
+        "height": 1280
+      },
+      "md": {
+        "src": "/assets/hitos/marley-coffee-stgo-10k-05-md.webp",
+        "width": 853,
+        "height": 1280
+      },
+      "sm": {
+        "src": "/assets/hitos/marley-coffee-stgo-10k-05-sm.webp",
+        "width": 480,
+        "height": 720
+      }
+    },
+    "width": 853,
+    "height": 1280
+  },
+  "hitos/torres-del-paine-01": {
+    "original": "Torres del Paine.jpeg",
+    "variants": {
+      "lg": {
+        "src": "/assets/hitos/torres-del-paine-01-lg.webp",
+        "width": 1200,
+        "height": 1600
+      },
+      "md": {
+        "src": "/assets/hitos/torres-del-paine-01-md.webp",
+        "width": 1200,
+        "height": 1600
+      },
+      "sm": {
+        "src": "/assets/hitos/torres-del-paine-01-sm.webp",
+        "width": 480,
+        "height": 640
+      }
+    },
+    "width": 1200,
+    "height": 1600
+  },
+  "hitos/torres-del-paine-02": {
+    "original": "Torres del Paine (2).jpeg",
+    "variants": {
+      "lg": {
+        "src": "/assets/hitos/torres-del-paine-02-lg.webp",
+        "width": 1200,
+        "height": 1600
+      },
+      "md": {
+        "src": "/assets/hitos/torres-del-paine-02-md.webp",
+        "width": 1200,
+        "height": 1600
+      },
+      "sm": {
+        "src": "/assets/hitos/torres-del-paine-02-sm.webp",
+        "width": 480,
+        "height": 640
+      }
+    },
+    "width": 1200,
+    "height": 1600
+  },
+  "hitos/torres-del-paine-03": {
+    "original": "Torres del Paine (3).jpeg",
+    "variants": {
+      "lg": {
+        "src": "/assets/hitos/torres-del-paine-03-lg.webp",
+        "width": 1200,
+        "height": 1600
+      },
+      "md": {
+        "src": "/assets/hitos/torres-del-paine-03-md.webp",
+        "width": 1200,
+        "height": 1600
+      },
+      "sm": {
+        "src": "/assets/hitos/torres-del-paine-03-sm.webp",
+        "width": 480,
+        "height": 640
+      }
+    },
+    "width": 1200,
+    "height": 1600
+  },
+  "hitos/torres-del-paine-04": {
+    "original": "Torres del Paine (4).jpeg",
+    "variants": {
+      "lg": {
+        "src": "/assets/hitos/torres-del-paine-04-lg.webp",
+        "width": 1200,
+        "height": 1600
+      },
+      "md": {
+        "src": "/assets/hitos/torres-del-paine-04-md.webp",
+        "width": 1200,
+        "height": 1600
+      },
+      "sm": {
+        "src": "/assets/hitos/torres-del-paine-04-sm.webp",
+        "width": 480,
+        "height": 640
+      }
+    },
+    "width": 1200,
+    "height": 1600
+  },
+  "hitos/torres-del-paine-05": {
+    "original": "Torres del Paine (5).jpeg",
+    "variants": {
+      "lg": {
+        "src": "/assets/hitos/torres-del-paine-05-lg.webp",
+        "width": 1200,
+        "height": 1600
+      },
+      "md": {
+        "src": "/assets/hitos/torres-del-paine-05-md.webp",
+        "width": 1200,
+        "height": 1600
+      },
+      "sm": {
+        "src": "/assets/hitos/torres-del-paine-05-sm.webp",
+        "width": 480,
+        "height": 640
+      }
+    },
+    "width": 1200,
+    "height": 1600
+  },
+  "hitos/torres-del-paine-06": {
+    "original": "Torres del Paine (6).jpeg",
+    "variants": {
+      "lg": {
+        "src": "/assets/hitos/torres-del-paine-06-lg.webp",
+        "width": 1200,
+        "height": 1600
+      },
+      "md": {
+        "src": "/assets/hitos/torres-del-paine-06-md.webp",
+        "width": 1200,
+        "height": 1600
+      },
+      "sm": {
+        "src": "/assets/hitos/torres-del-paine-06-sm.webp",
+        "width": 480,
+        "height": 640
+      }
+    },
+    "width": 1200,
+    "height": 1600
+  },
+  "hitos/torres-del-paine-07": {
+    "original": "Torres del Paine (7).jpeg",
+    "variants": {
+      "lg": {
+        "src": "/assets/hitos/torres-del-paine-07-lg.webp",
+        "width": 1200,
+        "height": 1600
+      },
+      "md": {
+        "src": "/assets/hitos/torres-del-paine-07-md.webp",
+        "width": 1200,
+        "height": 1600
+      },
+      "sm": {
+        "src": "/assets/hitos/torres-del-paine-07-sm.webp",
+        "width": 480,
+        "height": 640
+      }
+    },
+    "width": 1200,
+    "height": 1600
+  },
+  "hitos/torres-del-paine-08": {
+    "original": "Torres del Paine (8).jpeg",
+    "variants": {
+      "lg": {
+        "src": "/assets/hitos/torres-del-paine-08-lg.webp",
+        "width": 1200,
+        "height": 1600
+      },
+      "md": {
+        "src": "/assets/hitos/torres-del-paine-08-md.webp",
+        "width": 1200,
+        "height": 1600
+      },
+      "sm": {
+        "src": "/assets/hitos/torres-del-paine-08-sm.webp",
+        "width": 480,
+        "height": 640
+      }
+    },
+    "width": 1200,
+    "height": 1600
+  },
+  "hitos/torres-del-paine-09": {
+    "original": "Torres del Paine (9).jpeg",
+    "variants": {
+      "lg": {
+        "src": "/assets/hitos/torres-del-paine-09-lg.webp",
+        "width": 1200,
+        "height": 1600
+      },
+      "md": {
+        "src": "/assets/hitos/torres-del-paine-09-md.webp",
+        "width": 1200,
+        "height": 1600
+      },
+      "sm": {
+        "src": "/assets/hitos/torres-del-paine-09-sm.webp",
+        "width": 480,
+        "height": 640
+      }
+    },
+    "width": 1200,
+    "height": 1600
+  },
+  "hitos/trekking-riscos-del-sauce-01": {
+    "original": "Trekking Riscos del Sauce - Alhué, RM, Chile.jpeg",
+    "variants": {
+      "lg": {
+        "src": "/assets/hitos/trekking-riscos-del-sauce-01-lg.webp",
+        "width": 960,
+        "height": 1280
+      },
+      "md": {
+        "src": "/assets/hitos/trekking-riscos-del-sauce-01-md.webp",
+        "width": 960,
+        "height": 1280
+      },
+      "sm": {
+        "src": "/assets/hitos/trekking-riscos-del-sauce-01-sm.webp",
+        "width": 480,
+        "height": 640
+      }
+    },
+    "width": 960,
+    "height": 1280
+  },
+  "logo": {
+    "width": 512,
+    "height": 512,
+    "variants": {
+      "md": {
+        "src": "/assets/logo/logo-512.webp",
+        "width": 512,
+        "height": 512
+      }
+    }
+  },
+  "perfil/alberto-astudillo": {
+    "variants": {
+      "lg": {
+        "src": "/assets/perfil/alberto-astudillo-lg.webp",
+        "width": 960,
+        "height": 1280
+      },
+      "md": {
+        "src": "/assets/perfil/alberto-astudillo-md.webp",
+        "width": 960,
+        "height": 1280
+      },
+      "sm": {
+        "src": "/assets/perfil/alberto-astudillo-sm.webp",
+        "width": 480,
+        "height": 640
+      }
+    },
+    "width": 960,
+    "height": 1280
+  },
+  "video/poster": {
+    "width": 1920,
+    "height": 1080,
+    "variants": {
+      "lg": {
+        "src": "/assets/video/landing-poster.webp",
+        "width": 1920,
+        "height": 1080
+      }
+    }
+  }
+}
