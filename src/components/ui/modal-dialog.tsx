@@ -1,5 +1,5 @@
 import { IconX } from "@tabler/icons-react"
-import { useEffect, useRef } from "react"
+import { useEffect, useId, useRef } from "react"
 import { cn } from "@/lib/utils"
 
 type ModalDialogProps = {
@@ -22,6 +22,7 @@ type ModalDialogProps = {
 export function ModalDialog({ open, onClose, title, showTitle = false, children, className, aside }: ModalDialogProps) {
   const ref = useRef<HTMLDialogElement>(null)
   const opener = useRef<HTMLElement | null>(null)
+  const titleId = useId()
 
   useEffect(() => {
     const dialog = ref.current
@@ -35,11 +36,14 @@ export function ModalDialog({ open, onClose, title, showTitle = false, children,
     }
   }, [open])
 
+  // Never leave the page scroll-locked if the dialog unmounts while open.
+  useEffect(() => () => void (document.documentElement.style.overflow = ""), [])
+
   return (
     <dialog
       ref={ref}
       aria-label={showTitle ? undefined : title}
-      aria-labelledby={showTitle ? "modal-title" : undefined}
+      aria-labelledby={showTitle ? titleId : undefined}
       onClose={() => {
         document.documentElement.style.overflow = ""
         onClose()
@@ -62,7 +66,7 @@ export function ModalDialog({ open, onClose, title, showTitle = false, children,
       <div className={cn("relative flex max-h-[calc(100dvh-2rem)] w-[calc(100vw-2rem)] flex-col", className)}>
         <div className="flex items-center justify-between gap-4 pb-3">
           {showTitle ? (
-            <h2 id="modal-title" className="font-heading text-h3 text-on-media">
+            <h2 id={titleId} className="font-heading text-h3 text-on-media">
               {title}
             </h2>
           ) : (

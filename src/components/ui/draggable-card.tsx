@@ -1,6 +1,14 @@
 "use client";
+/**
+ * Aceternity DraggableCard, adapted:
+ * - `onActivate` fires on a click/Enter that was not a drag (6px threshold),
+ *   through a real <button> covering the card (keyboard + screen readers);
+ * - `drag={false}` turns it into a still card (grid mode, touch, reduced motion),
+ *   so it never blocks vertical scrolling on phones;
+ * - theme tokens instead of neutral greys.
+ */
 import { cn } from "@/lib/utils";
-import React, { useRef, useState, useEffect } from "react";
+import React, { createContext, useContext, useRef, useState, useEffect } from "react";
 import {
   motion,
   useMotionValue,
@@ -11,13 +19,29 @@ import {
   useAnimationControls,
 } from "motion/react";
 
+const DRAG_THRESHOLD = 6;
+
+/** The container's box, so cards can be thrown around but never off-screen. */
+const BoundsContext = createContext<React.RefObject<HTMLDivElement | null> | null>(null);
+
 export const DraggableCardBody = ({
   className,
   children,
+  drag = true,
+  onActivate,
+  label,
 }: {
   className?: string;
   children?: React.ReactNode;
+  drag?: boolean;
+  /** Called on click / Enter when the pointer did not drag the card. */
+  onActivate?: () => void;
+  /** Accessible name of the activation button. */
+  label?: string;
 }) => {
+  const bounds = useContext(BoundsContext);
+  const pressPoint = useRef<{ x: number; y: number } | null>(null);
+  const dragged = useRef(false);
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
   const cardRef = useRef<HTMLDivElement>(null);
@@ -83,6 +107,7 @@ export const DraggableCardBody = ({
   }, []);
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (!drag) return;
     const { clientX, clientY } = e;
     const { width, height, left, top } =
       cardRef.current?.getBoundingClientRect() ?? {
@@ -107,9 +132,23 @@ export const DraggableCardBody = ({
   return (
     <motion.div
       ref={cardRef}
-      drag
-      dragConstraints={constraints}
+      drag={drag}
+      dragConstraints={bounds ?? constraints}
+      dragElastic={0.15}
+      onPointerDownCapture={(e) => {
+        pressPoint.current = { x: e.clientX, y: e.clientY };
+        dragged.current = false;
+      }}
+      onPointerMoveCapture={(e) => {
+        const p = pressPoint.current;
+        // Only movement with a button held counts as dragging.
+        if (p && e.buttons !== 0 && Math.hypot(e.clientX - p.x, e.clientY - p.y) > DRAG_THRESHOLD) dragged.current = true;
+      }}
+      onPointerUpCapture={() => {
+        pressPoint.current = null;
+      }}
       onDragStart={() => {
+        dragged.current = true;
         document.body.style.cursor = "grabbing";
       }}
       onDragEnd={(_event, info) => {
@@ -159,20 +198,32 @@ export const DraggableCardBody = ({
         willChange: "transform",
       }}
       animate={controls}
-      whileHover={{ scale: 1.02 }}
+      whileHover={drag ? { scale: 1.02 } : undefined}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
       className={cn(
-        "relative min-h-96 w-80 overflow-hidden rounded-md bg-neutral-100 p-6 shadow-2xl transform-3d dark:bg-neutral-900",
+        "relative min-h-96 w-80 overflow-hidden rounded-md bg-card p-6 text-card-foreground shadow-2xl transform-3d",
+        drag ? "cursor-grab touch-none" : "touch-auto",
         className,
       )}
     >
       {children}
+      {onActivate ? (
+        <button
+          type="button"
+          aria-label={label}
+          className={cn("absolute inset-0 z-20 rounded-[inherit]", drag ? "cursor-grab" : "cursor-pointer")}
+          onClick={() => {
+            if (!dragged.current) onActivate();
+            dragged.current = false;
+          }}
+        />
+      ) : null}
       <motion.div
         style={{
           opacity: glareOpacity,
         }}
-        className="pointer-events-none absolute inset-0 bg-white select-none"
+        className="pointer-events-none absolute inset-0 bg-bone select-none contrast:hidden"
       />
     </motion.div>
   );
@@ -185,7 +236,10 @@ export const DraggableCardContainer = ({
   className?: string;
   children?: React.ReactNode;
 }) => {
+  const ref = useRef<HTMLDivElement>(null);
   return (
-    <div className={cn("[perspective:3000px]", className)}>{children}</div>
+    <BoundsContext.Provider value={ref}>
+      <div ref={ref} className={cn("[perspective:3000px]", className)}>{children}</div>
+    </BoundsContext.Provider>
   );
 };
