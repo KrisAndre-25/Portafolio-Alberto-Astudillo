@@ -20,14 +20,15 @@ One-page portfolio for Alberto Astudillo (guardaparque, Torres del Paine). Site 
 ```
 src/
   App.tsx                 hero in main bundle; chrome, sections, footer lazy after hydration
+  index.html              theme script, loading screen (inline), font preloads
   config/site.config.ts   ALL editable copy, links, availability, footer credit (PENDIENTE = placeholder)
   config/sections.ts      section ids/titles/icons for the dock
   data/                   typed manifests: milestones, animals, certificates, skills, images
   data/generated/*.json   written by the scripts, do not edit by hand
-  components/ui/          third-party components (Aceternity/21st, adapted) + MarqueeButton, ModalDialog, Lightbox
-  components/sections/    Hero, About, Skills, Milestones, Fauna, Certifications, Contact
-  components/layout/      Navbar (dock), ScrollProgress, Reveal, AnimalDecor, SectionHeading
-  components/decor/       hand-drawn SVG mountains and botanicals
+  components/ui/          third-party components (Aceternity/21st, adapted) + FrameButton, ModalDialog, Lightbox
+  components/sections/    Hero, About, Experience (timeline), Skills, Milestones, Fauna, Certifications, Contact
+  components/layout/      Navbar (top dock), SectionRail, ScrollProgress, Reveal, AnimalDecor, SectionHeading
+  components/decor/       hand-drawn SVG mountains, botanicals and the CSS 3D tree
   hooks/                  media queries, a11y theme, active section, hydration
 public/                   ORIGINALS (not committed, not deployed) + assets/ (optimized, committed)
 referencias/              components exactly as pasted by the user (not built)
@@ -37,7 +38,7 @@ scripts/                  asset, certificate, CV, pre-render and screenshot scri
 ## Conventions
 - Never hardcode colours: use tokens from `src/index.css` (`bg-background`, `text-sand`, `bg-moss`…). Every token is remapped in the high-contrast theme (`[data-theme="contrast"]`, Tailwind variant `contrast:`). State must never rely on colour alone.
 - Respect `prefers-reduced-motion` in anything that moves.
-- CTAs use `MarqueeButton` (`@/components/ui/marquee-button`), never styled-components.
+- CTAs use `FrameButton` (`@/components/ui/frame-button`, variants light/dark/moss), never styled-components.
 - Do not invent facts about Alberto: text comes from his CV or `site.config.ts`.
 - Commits: Conventional Commits, authored by the repo owner, with no AI attribution lines.
 
@@ -45,4 +46,5 @@ scripts/                  asset, certificate, CV, pre-render and screenshot scri
 - **Milestone photo**: drop the JPEG in `public/` using the existing naming (`Name (n).jpeg`), add/adjust the group in `MILESTONES` in `scripts/optimize-images.mjs`, run `npm run assets -- --no-video`, then add one alt text per photo in `src/data/milestones.ts` (date/description are optional fields).
 - **Animal**: add the file to `public/animales/`, add it to `ANIMALS` in the optimize script (set `cutout` if it has a white background), run the script, add the entry in `src/data/animals.ts`.
 - **Certificate**: put the file in `Certificaciones/Certificaciones/`, add `slug: filename` to `FILES` in `scripts/generate-cert-thumbs.py`, run it, add title/issuer/date in `src/data/certificates.ts`.
+- **Experience timeline**: `src/data/experience.ts` (parks / adventure tourism only, from the CV).
 - **Text, links, availability, footer credit**: `src/config/site.config.ts`.

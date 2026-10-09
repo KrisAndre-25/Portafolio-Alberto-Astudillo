@@ -2,6 +2,7 @@ import { useEffect } from "react"
 import { About } from "@/components/sections/about"
 import { Certifications } from "@/components/sections/certifications"
 import { Contact } from "@/components/sections/contact"
+import { Experience } from "@/components/sections/experience"
 import { Fauna } from "@/components/sections/fauna"
 import { Milestones } from "@/components/sections/milestones"
 import { Skills } from "@/components/sections/skills"
@@ -20,6 +21,7 @@ export default function BelowFold() {
   return (
     <>
       <About />
+      <Experience />
       <Skills />
       <Milestones />
       <Fauna />

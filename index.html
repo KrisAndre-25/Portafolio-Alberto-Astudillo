@@ -42,8 +42,81 @@
         } catch (e) {}
       })()
     </script>
+    <!-- Loading screen (from referencias/spinner-loader.tsx), theme colours. -->
+    <style>
+      #loader {
+        position: fixed;
+        inset: 0;
+        z-index: 100;
+        display: grid;
+        place-content: center;
+        justify-items: center;
+        gap: 1.25rem;
+        background: var(--background, #121a15);
+        color: var(--foreground, #f1ece2);
+        transition: opacity 0.5s ease, visibility 0.5s ease;
+      }
+      .is-loaded #loader {
+        opacity: 0;
+        visibility: hidden;
+      }
+      #loader .loader-ring {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100px;
+        height: 100px;
+      }
+      #loader .loader-ring::after {
+        content: "";
+        box-sizing: content-box;
+        width: 75px;
+        height: 75px;
+        border: 15px solid color-mix(in oklch, var(--foreground, #f1ece2) 16%, transparent);
+        border-top-color: var(--moss, #46c380);
+        border-radius: 50%;
+        animation: loading 0.75s ease-out infinite;
+      }
+      #loader .loader-name {
+        font: 500 0.75rem/1 ui-sans-serif, system-ui, sans-serif;
+        letter-spacing: 0.3em;
+        text-transform: uppercase;
+        opacity: 0.7;
+      }
+      @keyframes loading {
+        from { transform: rotate(0turn); }
+        to { transform: rotate(1turn); }
+      }
+      /* The hero entrance waits until the loading screen is gone. */
+      html:not(.is-loaded) .hero-enter,
+      html:not(.is-loaded) .hero-enter-slide {
+        animation-play-state: paused;
+      }
+    </style>
+    <noscript><style>#loader { display: none; }</style></noscript>
   </head>
   <body class="grain">
+    <div id="loader" role="status">
+      <div class="loader-ring" aria-hidden="true"></div>
+      <span class="loader-name">Alberto Astudillo</span>
+      <span class="sr-only">Cargando el sitio…</span>
+    </div>
+    <script>
+      // Hide the loading screen once the hero's fonts and poster are ready (3s at most).
+      ;(function () {
+        var root = document.documentElement
+        var done = function () { root.classList.add("is-loaded") }
+        setTimeout(done, 3000)
+        document.addEventListener("DOMContentLoaded", function () {
+          var poster = document.querySelector("#inicio img")
+          var img = poster && !poster.complete
+            ? new Promise(function (r) { poster.addEventListener("load", r, { once: true }); poster.addEventListener("error", r, { once: true }) })
+            : Promise.resolve()
+          var fonts = document.fonts ? document.fonts.ready : Promise.resolve()
+          Promise.all([img, fonts]).then(function () { setTimeout(done, 250) })
+        })
+      })()
+    </script>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>

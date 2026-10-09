@@ -1,5 +1,6 @@
 import {
   IconAward,
+  IconRoute,
   IconHome,
   IconMail,
   IconMountain,
@@ -12,6 +13,7 @@ import {
 export const SECTIONS = [
   { id: "inicio", title: "Inicio", Icon: IconHome },
   { id: "sobre-mi", title: "Sobre mí", Icon: IconUser },
+  { id: "experiencia", title: "Experiencia", Icon: IconRoute },
   { id: "habilidades", title: "Habilidades", Icon: IconTools },
   { id: "hitos", title: "Hitos", Icon: IconMountain },
   { id: "fauna", title: "Fauna", Icon: IconPaw },
