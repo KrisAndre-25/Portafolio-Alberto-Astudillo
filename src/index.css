@@ -97,7 +97,7 @@
   --secondary: var(--glacier);
   --secondary-foreground: var(--forest);
   --muted: oklch(0.235 0.02 155);
-  --muted-foreground: oklch(0.78 0.02 95);
+  --muted-foreground: oklch(0.84 0.018 95);
   --accent: var(--clay);
   --accent-foreground: var(--forest);
   --destructive: oklch(0.68 0.16 32);
@@ -133,7 +133,7 @@
   --glacier: oklch(0.35 0 0);
   --lake: oklch(0.25 0 0);
   --clay: oklch(0.3 0 0);
-  --sand: oklch(0.88 0 0);
+  --sand: oklch(0.3 0 0); /* used for small labels: must stay dark on white */
   --bark: oklch(0.2 0 0);
   --bone: oklch(1 0 0);
   --paper: oklch(1 0 0);

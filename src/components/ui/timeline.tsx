@@ -53,14 +53,14 @@ export const Timeline = ({ data, header }: { data: TimelineEntry[]; header?: Rea
                 <div className="size-4 rounded-full border border-sand/60 bg-moss/40 p-2 contrast:border-foreground contrast:bg-foreground" />
               </div>
               <div className="hidden md:block md:pl-20">
-                <h3 className="font-heading text-4xl font-medium text-muted-foreground lg:text-5xl">{item.title}</h3>
+                <h3 className="font-heading text-4xl font-medium text-foreground lg:text-5xl">{item.title}</h3>
                 {item.subtitle ? <p className="mt-2 text-sm tracking-[0.2em] text-sand uppercase contrast:text-foreground">{item.subtitle}</p> : null}
               </div>
             </div>
 
             <div className="relative w-full pr-4 pl-20 md:pl-4">
               <div className="mb-4 md:hidden">
-                <h3 className="font-heading text-2xl font-medium text-muted-foreground">{item.title}</h3>
+                <h3 className="font-heading text-2xl font-medium text-foreground">{item.title}</h3>
                 {item.subtitle ? <p className="mt-1 text-xs tracking-[0.2em] text-sand uppercase contrast:text-foreground">{item.subtitle}</p> : null}
               </div>
               {item.content}
