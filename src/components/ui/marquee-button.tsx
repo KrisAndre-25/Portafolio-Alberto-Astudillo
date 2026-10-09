@@ -34,7 +34,11 @@ export function MarqueeButton(props: MarqueeButtonProps) {
   const content = (
     <>
       <span className="btn-marquee-label">
-        {icon}
+        {icon ? (
+          <span className="btn-marquee-icon" aria-hidden="true">
+            {icon}
+          </span>
+        ) : null}
         {children}
       </span>
       <span className="btn-marquee-track" aria-hidden="true">

@@ -1,6 +1,16 @@
 "use client";
 
+/**
+ * Aceternity 3D card, extended so it does not depend on hover:
+ * - mouse: tilt follows the pointer (original behaviour);
+ * - touch: items keep their depth, and the card tilts with the device
+ *   orientation when the browser provides it without a permission prompt,
+ *   otherwise it sways very gently on its own;
+ * - reduced motion: no tilt and no sway.
+ */
+
 import { cn } from "@/lib/utils";
+import { useCanHover, useReducedMotion } from "@/hooks/use-media-query";
 
 import React, {
   createContext,
@@ -25,9 +35,44 @@ export const CardContainer = ({
 }) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const [isMouseEntered, setIsMouseEntered] = useState(false);
+  const canHover = useCanHover();
+  const reduced = useReducedMotion();
+
+  // Touch screens: show depth and tilt with the device, or sway idly.
+  useEffect(() => {
+    const el = containerRef.current;
+    if (!el || canHover || reduced) return;
+    setIsMouseEntered(true);
+    let raf = 0;
+    let gyro = false;
+    const onOrientation = (e: DeviceOrientationEvent) => {
+      if (e.beta === null || e.gamma === null) return;
+      gyro = true;
+      const x = Math.max(-8, Math.min(8, e.gamma / 4));
+      const y = Math.max(-8, Math.min(8, (e.beta - 45) / 5));
+      el.style.transform = `rotateY(${x}deg) rotateX(${-y}deg)`;
+    };
+    const needsPermission =
+      typeof (DeviceOrientationEvent as unknown as { requestPermission?: unknown }).requestPermission === "function";
+    if (!needsPermission) window.addEventListener("deviceorientation", onOrientation);
+    const start = performance.now();
+    const sway = (now: number) => {
+      if (!gyro) {
+        const t = (now - start) / 1000;
+        el.style.transform = `rotateY(${Math.sin(t * 0.6) * 4}deg) rotateX(${Math.cos(t * 0.45) * 2.5}deg)`;
+      }
+      raf = requestAnimationFrame(sway);
+    };
+    raf = requestAnimationFrame(sway);
+    return () => {
+      cancelAnimationFrame(raf);
+      window.removeEventListener("deviceorientation", onOrientation);
+      el.style.transform = "";
+    };
+  }, [canHover, reduced]);
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    if (!containerRef.current) return;
+    if (!containerRef.current || reduced) return;
     const { left, top, width, height } =
       containerRef.current.getBoundingClientRect();
     const x = (e.clientX - left - width / 2) / 25;
@@ -35,13 +80,13 @@ export const CardContainer = ({
     containerRef.current.style.transform = `rotateY(${x}deg) rotateX(${y}deg)`;
   };
 
-  const handleMouseEnter = (_e: React.MouseEvent<HTMLDivElement>) => {
+  const handleMouseEnter = () => {
+    if (!canHover || reduced) return;
     setIsMouseEntered(true);
-    if (!containerRef.current) return;
   };
 
-  const handleMouseLeave = (_e: React.MouseEvent<HTMLDivElement>) => {
-    if (!containerRef.current) return;
+  const handleMouseLeave = () => {
+    if (!containerRef.current || !canHover) return;
     setIsMouseEntered(false);
     containerRef.current.style.transform = `rotateY(0deg) rotateX(0deg)`;
   };
@@ -63,6 +108,7 @@ export const CardContainer = ({
           onMouseLeave={handleMouseLeave}
           className={cn(
             "flex items-center justify-center relative transition-all duration-200 ease-linear",
+            !canHover && "transition-none",
             className
           )}
           style={{
@@ -95,6 +141,18 @@ export const CardBody = ({
   );
 };
 
+type CardItemProps = {
+  as?: React.ElementType;
+  children: React.ReactNode;
+  className?: string;
+  translateX?: number | string;
+  translateY?: number | string;
+  translateZ?: number | string;
+  rotateX?: number | string;
+  rotateY?: number | string;
+  rotateZ?: number | string;
+} & Record<string, unknown>;
+
 export const CardItem = ({
   as: Tag = "div",
   children,
@@ -106,33 +164,16 @@ export const CardItem = ({
   rotateY = 0,
   rotateZ = 0,
   ...rest
-}: {
-  as?: React.ElementType;
-  children: React.ReactNode;
-  className?: string;
-  translateX?: number | string;
-  translateY?: number | string;
-  translateZ?: number | string;
-  rotateX?: number | string;
-  rotateY?: number | string;
-  rotateZ?: number | string;
-  [key: string]: any;
-}) => {
+}: CardItemProps) => {
   const ref = useRef<HTMLDivElement>(null);
   const [isMouseEntered] = useMouseEnter();
 
   useEffect(() => {
-    handleAnimations();
-  }, [isMouseEntered]);
-
-  const handleAnimations = () => {
     if (!ref.current) return;
-    if (isMouseEntered) {
-      ref.current.style.transform = `translateX(${translateX}px) translateY(${translateY}px) translateZ(${translateZ}px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) rotateZ(${rotateZ}deg)`;
-    } else {
-      ref.current.style.transform = `translateX(0px) translateY(0px) translateZ(0px) rotateX(0deg) rotateY(0deg) rotateZ(0deg)`;
-    }
-  };
+    ref.current.style.transform = isMouseEntered
+      ? `translateX(${translateX}px) translateY(${translateY}px) translateZ(${translateZ}px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) rotateZ(${rotateZ}deg)`
+      : `translateX(0px) translateY(0px) translateZ(0px) rotateX(0deg) rotateY(0deg) rotateZ(0deg)`;
+  }, [isMouseEntered, translateX, translateY, translateZ, rotateX, rotateY, rotateZ]);
 
   return (
     <Tag
@@ -146,6 +187,7 @@ export const CardItem = ({
 };
 
 // Create a hook to use the context
+// eslint-disable-next-line react/only-export-components
 export const useMouseEnter = () => {
   const context = useContext(MouseEnterContext);
   if (context === undefined) {

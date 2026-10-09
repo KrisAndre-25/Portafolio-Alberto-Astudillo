@@ -1,7 +1,9 @@
 import { Navbar } from "@/components/layout/navbar"
 import { ScrollProgress } from "@/components/layout/scroll-progress"
 import { SectionHeading } from "@/components/layout/section-heading"
+import { About } from "@/components/sections/about"
 import { Hero } from "@/components/sections/hero"
+import { Skills } from "@/components/sections/skills"
 import { SECTIONS } from "@/config/sections"
 
 function App() {
@@ -17,8 +19,10 @@ function App() {
       <Navbar />
       <main className="relative z-10 bg-background">
         <Hero />
+        <About />
+        <Skills />
         {/* Placeholder sections: replaced phase by phase. */}
-        {SECTIONS.slice(1).map((s) => (
+        {SECTIONS.slice(3).map((s) => (
           <section key={s.id} id={s.id} aria-labelledby={`${s.id}-title`} className="mx-auto min-h-[70svh] max-w-6xl px-4 py-24 sm:px-8">
             <SectionHeading id={`${s.id}-title`} eyebrow="Próximamente" title={s.title} />
           </section>

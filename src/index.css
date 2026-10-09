@@ -338,6 +338,16 @@
     gap: 0.6em;
     transition: opacity 0.2s ease;
   }
+  .btn-marquee .btn-marquee-icon {
+    display: inline-block;
+    width: 1.15em;
+    height: 1.15em;
+    flex: none;
+  }
+  .btn-marquee .btn-marquee-icon svg {
+    width: 100%;
+    height: 100%;
+  }
   .btn-marquee .btn-marquee-track {
     --start: 0em;
     position: absolute;
