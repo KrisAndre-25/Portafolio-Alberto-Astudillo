@@ -38,7 +38,7 @@ export const milestones: Milestone[] = [
     photos: photos("torres-del-paine", [
       "Alberto con sombrero, mochila naranja y radio en un bosque de lengas sin hojas.",
       "Ladera con matorrales y árboles secos bajo un cielo nublado en la Patagonia.",
-      "Los Cuernos del Paine recortados contra nubes rosadas al atardecer.",
+      "Picos del macizo del Paine recortados contra nubes rosadas al atardecer.",
       "Las Torres del Paine bajo cielo azul, sobre el Refugio Central y su letrero.",
       "Selfie de Alberto con polera de Las Torres, mochila naranja y bastones en una ladera.",
       "Alberto con gorro y cuello abrigado al amanecer, con un lago al fondo del valle.",

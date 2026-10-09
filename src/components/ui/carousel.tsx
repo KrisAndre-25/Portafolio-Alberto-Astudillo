@@ -1,214 +1,210 @@
 "use client";
+/**
+ * Aceternity Carousel, adapted:
+ * - valid markup (li directly in ul), one region with aria-roledescription;
+ * - slides carry srcSet/sizes/alt and an `onButtonClick` action;
+ * - keyboard (←/→), swipe on touch, lazy images except the first;
+ * - parallax only while the pointer moves (no endless rAF per slide);
+ * - off-screen slides are `inert` so their buttons are not tabbable;
+ * - theme tokens; reduced motion drops the transitions.
+ */
 import { IconArrowNarrowRight } from "@tabler/icons-react";
-import { useState, useRef, useId, useEffect } from "react";
+import { useState, useRef, useId } from "react";
+import { cn } from "@/lib/utils";
 
-interface SlideData {
+export interface SlideData {
   title: string;
   button: string;
   src: string;
+  srcSet?: string;
+  sizes?: string;
+  alt?: string;
+  /** Small line above the title (e.g. category · photo count). */
+  meta?: string;
 }
 
 interface SlideProps {
   slide: SlideData;
   index: number;
+  total: number;
   current: number;
   handleSlideClick: (index: number) => void;
+  onButtonClick?: (index: number) => void;
 }
 
-const Slide = ({ slide, index, current, handleSlideClick }: SlideProps) => {
+const Slide = ({ slide, index, total, current, handleSlideClick, onButtonClick }: SlideProps) => {
   const slideRef = useRef<HTMLLIElement>(null);
-
-  const xRef = useRef(0);
-  const yRef = useRef(0);
   const frameRef = useRef<number | undefined>(undefined);
+  const isCurrent = current === index;
 
-  useEffect(() => {
-    const animate = () => {
-      if (!slideRef.current) return;
-
-      const x = xRef.current;
-      const y = yRef.current;
-
-      slideRef.current.style.setProperty("--x", `${x}px`);
-      slideRef.current.style.setProperty("--y", `${y}px`);
-
-      frameRef.current = requestAnimationFrame(animate);
-    };
-
-    frameRef.current = requestAnimationFrame(animate);
-
-    return () => {
-      if (frameRef.current) {
-        cancelAnimationFrame(frameRef.current);
-      }
-    };
-  }, []);
+  const setOffset = (x: number, y: number) => {
+    if (frameRef.current) cancelAnimationFrame(frameRef.current);
+    frameRef.current = requestAnimationFrame(() => {
+      slideRef.current?.style.setProperty("--x", `${x}px`);
+      slideRef.current?.style.setProperty("--y", `${y}px`);
+    });
+  };
 
   const handleMouseMove = (event: React.MouseEvent) => {
     const el = slideRef.current;
-    if (!el) return;
-
+    if (!el || !isCurrent) return;
     const r = el.getBoundingClientRect();
-    xRef.current = event.clientX - (r.left + Math.floor(r.width / 2));
-    yRef.current = event.clientY - (r.top + Math.floor(r.height / 2));
+    setOffset(event.clientX - (r.left + Math.floor(r.width / 2)), event.clientY - (r.top + Math.floor(r.height / 2)));
   };
 
-  const handleMouseLeave = () => {
-    xRef.current = 0;
-    yRef.current = 0;
-  };
-
-  const imageLoaded = (event: React.SyntheticEvent<HTMLImageElement>) => {
-    event.currentTarget.style.opacity = "1";
-  };
-
-  const { src, button, title } = slide;
+  const { src, srcSet, sizes, alt, button, title, meta } = slide;
 
   return (
-    <div className="[perspective:1200px] [transform-style:preserve-3d]">
-      <li
-        ref={slideRef}
-        className="flex flex-1 flex-col items-center justify-center relative text-center text-white opacity-100 transition-all duration-300 ease-in-out w-[70vmin] h-[70vmin] mx-[4vmin] z-10 "
-        onClick={() => handleSlideClick(index)}
-        onMouseMove={handleMouseMove}
-        onMouseLeave={handleMouseLeave}
-        style={{
-          transform:
-            current !== index
-              ? "scale(0.98) rotateX(8deg)"
-              : "scale(1) rotateX(0deg)",
-          transition: "transform 0.5s cubic-bezier(0.4, 0, 0.2, 1)",
-          transformOrigin: "bottom",
-        }}
+    <li
+      ref={slideRef}
+      role="group"
+      aria-roledescription="diapositiva"
+      aria-label={`${index + 1} de ${total}: ${title}`}
+      inert={!isCurrent}
+      className="relative z-10 mx-[3vmin] flex h-[min(78vmin,34rem)] w-[min(78vmin,34rem)] flex-1 shrink-0 flex-col items-center justify-end text-center text-on-media [perspective:1200px]"
+      onClick={() => handleSlideClick(index)}
+      onMouseMove={handleMouseMove}
+      onMouseLeave={() => setOffset(0, 0)}
+      style={{
+        transform: isCurrent ? "scale(1) rotateX(0deg)" : "scale(0.94) rotateX(8deg)",
+        transition: "transform 0.5s cubic-bezier(0.4, 0, 0.2, 1)",
+        transformOrigin: "bottom",
+      }}
+    >
+      <div
+        className="absolute inset-0 overflow-hidden rounded-3xl border border-border bg-card transition-all duration-150 ease-out contrast:border-2"
+        style={{ transform: isCurrent ? "translate3d(calc(var(--x, 0px) / 30), calc(var(--y, 0px) / 30), 0)" : "none" }}
       >
+        <img
+          className="absolute -inset-[10%] h-[120%] w-[120%] max-w-none object-cover transition-opacity duration-700 ease-in-out motion-reduce:transition-none"
+          style={{ opacity: isCurrent ? 1 : 0.45 }}
+          alt={alt ?? title}
+          src={src}
+          srcSet={srcSet}
+          sizes={sizes}
+          loading={index === 0 ? "eager" : "lazy"}
+          decoding="async"
+          draggable={false}
+        />
         <div
-          className="absolute top-0 left-0 w-full h-full bg-[#1D1F2F] rounded-[1%] overflow-hidden transition-all duration-150 ease-out"
-          style={{
-            transform:
-              current === index
-                ? "translate3d(calc(var(--x) / 30), calc(var(--y) / 30), 0)"
-                : "none",
-          }}
-        >
-          <img
-            className="absolute inset-0 w-[120%] h-[120%] object-cover opacity-100 transition-opacity duration-600 ease-in-out"
-            style={{
-              opacity: current === index ? 1 : 0.5,
-            }}
-            alt={title}
-            src={src}
-            onLoad={imageLoaded}
-            loading="eager"
-            decoding="sync"
-          />
-          {current === index && (
-            <div className="absolute inset-0 bg-black/30 transition-all duration-1000" />
-          )}
-        </div>
+          aria-hidden="true"
+          className="absolute inset-0 bg-linear-to-t from-overlay/90 via-overlay/30 to-transparent contrast:from-overlay contrast:via-overlay/60"
+        />
+      </div>
 
-        <article
-          className={`relative p-[4vmin] transition-opacity duration-1000 ease-in-out ${
-            current === index ? "opacity-100 visible" : "opacity-0 invisible"
-          }`}
-        >
-          <h2 className="text-lg md:text-2xl lg:text-4xl font-semibold  relative">
-            {title}
-          </h2>
-          <div className="flex justify-center">
-            <button className="mt-6  px-4 py-2 w-fit mx-auto sm:text-sm text-black bg-white h-12 border border-transparent text-xs flex justify-center items-center rounded-2xl hover:shadow-lg transition duration-200 shadow-[0px_2px_3px_-1px_rgba(0,0,0,0.1),0px_1px_0px_0px_rgba(25,28,33,0.02),0px_0px_0px_1px_rgba(25,28,33,0.08)]">
+      <article
+        className={cn(
+          "relative w-full p-6 transition-opacity duration-700 ease-in-out sm:p-8",
+          isCurrent ? "visible opacity-100" : "invisible opacity-0",
+        )}
+      >
+        {meta ? <p className="text-xs tracking-[0.25em] text-on-media/80 uppercase">{meta}</p> : null}
+        <h3 className="mt-2 font-heading text-[clamp(1.375rem,1.1rem+1.6vw,2.25rem)] leading-tight font-medium text-balance">
+          {title}
+        </h3>
+        <div className="mt-5 flex justify-center">
+          <button
+            type="button"
+            onClick={(e) => {
+              e.stopPropagation();
+              onButtonClick?.(index);
+            }}
+            className="btn-marquee"
+            data-variant="solid"
+            style={{ "--spacing": `${(button.length * 0.78 + 2).toFixed(2)}em` } as React.CSSProperties}
+          >
+            <span className="btn-marquee-label">{button}</span>
+            <span className="btn-marquee-track" aria-hidden="true">
               {button}
-            </button>
-          </div>
-        </article>
-      </li>
-    </div>
+            </span>
+          </button>
+        </div>
+      </article>
+    </li>
   );
 };
 
 interface CarouselControlProps {
-  type: string;
+  type: "previous" | "next";
   title: string;
   handleClick: () => void;
 }
 
-const CarouselControl = ({
-  type,
-  title,
-  handleClick,
-}: CarouselControlProps) => {
+const CarouselControl = ({ type, title, handleClick }: CarouselControlProps) => {
   return (
     <button
-      className={`w-10 h-10 flex items-center mx-2 justify-center bg-neutral-200 dark:bg-neutral-800 border-3 border-transparent rounded-full focus:border-[#6D64F7] focus:outline-none hover:-translate-y-0.5 active:translate-y-0.5 transition duration-200 ${
-        type === "previous" ? "rotate-180" : ""
-      }`}
-      title={title}
+      type="button"
+      className={cn(
+        "mx-2 flex size-12 items-center justify-center rounded-full border border-border bg-card text-foreground transition duration-200 hover:-translate-y-0.5 hover:bg-muted active:translate-y-0.5 contrast:border-2",
+        type === "previous" && "rotate-180",
+      )}
+      aria-label={title}
       onClick={handleClick}
     >
-      <IconArrowNarrowRight className="text-neutral-600 dark:text-neutral-200" />
+      <IconArrowNarrowRight aria-hidden="true" />
     </button>
   );
 };
 
 interface CarouselProps {
   slides: SlideData[];
+  /** Accessible name of the carousel region. */
+  label?: string;
+  onButtonClick?: (index: number) => void;
 }
 
-export default function Carousel({ slides }: CarouselProps) {
+export default function Carousel({ slides, label = "Carrusel", onButtonClick }: CarouselProps) {
   const [current, setCurrent] = useState(0);
-
-  const handlePreviousClick = () => {
-    const previous = current - 1;
-    setCurrent(previous < 0 ? slides.length - 1 : previous);
-  };
-
-  const handleNextClick = () => {
-    const next = current + 1;
-    setCurrent(next === slides.length ? 0 : next);
-  };
-
-  const handleSlideClick = (index: number) => {
-    if (current !== index) {
-      setCurrent(index);
-    }
-  };
-
+  const swipe = useRef<number | null>(null);
   const id = useId();
 
+  const go = (i: number) => setCurrent(((i % slides.length) + slides.length) % slides.length);
+
   return (
-    <div
-      className="relative w-[70vmin] h-[70vmin] mx-auto"
-      aria-labelledby={`carousel-heading-${id}`}
+    <section
+      className="relative mx-auto h-[min(78vmin,34rem)] w-[min(78vmin,34rem)]"
+      aria-roledescription="carrusel"
+      aria-label={label}
+      onKeyDown={(e) => {
+        if (e.key === "ArrowLeft") go(current - 1);
+        if (e.key === "ArrowRight") go(current + 1);
+      }}
+      onPointerDown={(e) => {
+        if (e.pointerType !== "mouse") swipe.current = e.clientX;
+      }}
+      onPointerUp={(e) => {
+        if (swipe.current === null) return;
+        const dx = e.clientX - swipe.current;
+        swipe.current = null;
+        if (Math.abs(dx) > 48) go(current + (dx < 0 ? 1 : -1));
+      }}
+      style={{ touchAction: "pan-y" }}
     >
       <ul
-        className="absolute flex mx-[-4vmin] transition-transform duration-1000 ease-in-out"
-        style={{
-          transform: `translateX(-${current * (100 / slides.length)}%)`,
-        }}
+        id={`${id}-slides`}
+        className="absolute mx-[-3vmin] flex transition-transform duration-1000 ease-in-out motion-reduce:transition-none"
+        style={{ transform: `translateX(-${current * (100 / slides.length)}%)` }}
       >
         {slides.map((slide, index) => (
           <Slide
-            key={index}
+            key={slide.title}
             slide={slide}
             index={index}
+            total={slides.length}
             current={current}
-            handleSlideClick={handleSlideClick}
+            handleSlideClick={(i) => current !== i && go(i)}
+            onButtonClick={onButtonClick}
           />
         ))}
       </ul>
 
-      <div className="absolute flex justify-center w-full top-[calc(100%+1rem)]">
-        <CarouselControl
-          type="previous"
-          title="Go to previous slide"
-          handleClick={handlePreviousClick}
-        />
-
-        <CarouselControl
-          type="next"
-          title="Go to next slide"
-          handleClick={handleNextClick}
-        />
+      <div className="absolute top-[calc(100%+1.5rem)] flex w-full items-center justify-center">
+        <CarouselControl type="previous" title="Hito anterior" handleClick={() => go(current - 1)} />
+        <p className="min-w-16 text-center text-sm text-muted-foreground tabular-nums" aria-live="polite">
+          {current + 1} / {slides.length}
+        </p>
+        <CarouselControl type="next" title="Hito siguiente" handleClick={() => go(current + 1)} />
       </div>
-    </div>
+    </section>
   );
 }
