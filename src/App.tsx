@@ -1,13 +1,12 @@
 import { Navbar } from "@/components/layout/navbar"
 import { ScrollProgress } from "@/components/layout/scroll-progress"
-import { SectionHeading } from "@/components/layout/section-heading"
 import { About } from "@/components/sections/about"
 import { Certifications } from "@/components/sections/certifications"
+import { Contact } from "@/components/sections/contact"
 import { Fauna } from "@/components/sections/fauna"
 import { Hero } from "@/components/sections/hero"
 import { Milestones } from "@/components/sections/milestones"
 import { Skills } from "@/components/sections/skills"
-import { SECTIONS } from "@/config/sections"
 
 function App() {
   return (
@@ -27,12 +26,7 @@ function App() {
         <Milestones />
         <Fauna />
         <Certifications />
-        {/* Placeholder sections: replaced phase by phase. */}
-        {SECTIONS.slice(6).map((s) => (
-          <section key={s.id} id={s.id} aria-labelledby={`${s.id}-title`} className="mx-auto min-h-[70svh] max-w-6xl px-4 py-24 sm:px-8">
-            <SectionHeading id={`${s.id}-title`} eyebrow="Próximamente" title={s.title} />
-          </section>
-        ))}
+        <Contact />
       </main>
     </>
   )

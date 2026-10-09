@@ -1,0 +1,412 @@
+<!doctype html>
+<html lang="es-CL">
+  <head>
+    <meta charset="utf-8" />
+    <title>CV Alberto Astudillo Venegas</title>
+    <!--
+      Updated CV, same look as the original (mountain banner, Norwester titles,
+      Montserrat text, teal #0A7380). Printed to PDF by scripts/generate-cv.mjs.
+      Changes vs. the May 2026 CV: two new jobs added in order, larger and
+      clearer type, typo fixes only, RUT and birth date left out for the web.
+    -->
+    <style>
+      @font-face {
+        font-family: "Norwester";
+        src: url("../../node_modules/@fontsource/norwester/files/norwester-latin-400-normal.woff2") format("woff2");
+      }
+      /* Norwester has no accented capitals (É, Á, Ó): Bebas Neue fills those glyphs. */
+      @font-face {
+        font-family: "Bebas Neue";
+        src: url("../../node_modules/@fontsource/bebas-neue/files/bebas-neue-latin-400-normal.woff2") format("woff2");
+      }
+      @font-face {
+        font-family: "Montserrat";
+        font-weight: 400;
+        src: url("../../node_modules/@fontsource/montserrat/files/montserrat-latin-400-normal.woff2") format("woff2");
+      }
+      @font-face {
+        font-family: "Montserrat";
+        font-weight: 600;
+        src: url("../../node_modules/@fontsource/montserrat/files/montserrat-latin-600-normal.woff2") format("woff2");
+      }
+      @font-face {
+        font-family: "Montserrat";
+        font-weight: 700;
+        src: url("../../node_modules/@fontsource/montserrat/files/montserrat-latin-700-normal.woff2") format("woff2");
+      }
+
+      @page {
+        size: letter;
+        margin: 0;
+      }
+      :root {
+        --teal: #0a7380;
+        --ink: #1b1f22;
+        --muted: #4a5257;
+        --paper: #f8fafe;
+        --rule: #cfe0e3;
+      }
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        font-family: "Montserrat", sans-serif;
+        color: var(--ink);
+        background: var(--paper);
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+      .page {
+        width: 8.5in;
+        height: 11in;
+        position: relative;
+        overflow: hidden;
+        background: var(--paper);
+        page-break-after: always;
+      }
+      .page:last-child {
+        page-break-after: auto;
+      }
+      .banner {
+        height: 2.05in;
+        background: url("banner.jpg") center 62% / cover no-repeat;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 0.06in;
+      }
+      .banner.small {
+        height: 0.75in;
+        background-position: center 78%;
+      }
+      .name {
+        font-family: "Norwester", "Bebas Neue", sans-serif;
+        font-size: 40pt;
+        letter-spacing: 0.06em;
+        color: #000;
+        line-height: 1;
+      }
+      .tagline {
+        font-weight: 700;
+        font-size: 17pt;
+        letter-spacing: 0.32em;
+        color: #000;
+      }
+      .cols {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 0.42in;
+        padding: 0.25in 0.55in 0.25in;
+      }
+      h2 {
+        font-family: "Norwester", "Bebas Neue", sans-serif;
+        font-weight: 400;
+        font-size: 15.5pt;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--teal);
+        line-height: 1.1;
+        padding-bottom: 0.05in;
+        border-bottom: 1.2px solid var(--rule);
+        margin: 0.17in 0 0.07in;
+      }
+      .col > h2:first-child {
+        margin-top: 0;
+      }
+      h3 {
+        font-weight: 700;
+        font-size: 9.2pt;
+        letter-spacing: 0.05em;
+        color: var(--teal);
+        text-transform: uppercase;
+        line-height: 1.3;
+        margin-top: 0.085in;
+      }
+      h2 + h3,
+      h2 + .item > h3 {
+        margin-top: 0.02in;
+      }
+      .meta {
+        font-size: 8.9pt;
+        font-weight: 600;
+        color: var(--muted);
+        line-height: 1.4;
+        margin-top: 0.02in;
+      }
+      p,
+      li {
+        font-size: 8.9pt;
+        line-height: 1.42;
+      }
+      ul {
+        list-style: none;
+        margin-top: 0.03in;
+      }
+      li {
+        position: relative;
+        padding-left: 0.15in;
+      }
+      li::before {
+        content: "";
+        position: absolute;
+        left: 0.02in;
+        top: 0.075in;
+        width: 4px;
+        height: 4px;
+        border-radius: 50%;
+        background: var(--teal);
+      }
+      .plain li {
+        padding-left: 0;
+      }
+      .plain li::before {
+        display: none;
+      }
+      .item {
+        break-inside: avoid;
+      }
+      .contact strong {
+        font-weight: 600;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- ===================== PAGE 1 ===================== -->
+    <section class="page">
+      <header class="banner">
+        <div class="name">ALBERTO ASTUDILLO VENEGAS</div>
+        <div class="tagline">GUÍA TURISMO AVENTURA</div>
+      </header>
+      <div class="cols">
+        <div class="col">
+          <h2>Perfil académico</h2>
+          <div class="item">
+            <h3>Formación técnica Turismo Aventura</h3>
+            <p class="meta">CFT Santo Tomás | Marzo 2022 – Marzo 2024</p>
+          </div>
+          <div class="item">
+            <h3>Educación media</h3>
+            <p class="meta">Colegio María Teresa Moya (C.E.I.A.) | 2012 – 2013</p>
+            <p class="meta">Colegio Nueva Era Siglo XXI | 2011</p>
+          </div>
+          <div class="item">
+            <h3>Educación básica</h3>
+            <p class="meta">Colegio Nueva Era Siglo XXI | 2008 – 2010</p>
+            <p class="meta">Colegio San Luis Gonzaga | 2000 – 2007</p>
+          </div>
+
+          <h2>Práctica laboral</h2>
+          <div class="item">
+            <h3>Parque Andino Juncal | Los Andes, V Región</h3>
+            <p class="meta">Guardaparques | Febrero – Marzo 2024</p>
+          </div>
+
+          <h2>Habilidades y competencias</h2>
+          <ul>
+            <li>Inglés básico hablado / escrito.</li>
+            <li>Microsoft Office nivel usuario.</li>
+            <li>Excel nivel básico.</li>
+            <li>Amplia aptitud para manejar distintos tipos de contextos y clientes, brindándoles siempre la mejor atención.</li>
+          </ul>
+
+          <h2>Extracurricular</h2>
+          <div class="item">
+            <h3>Guiado Cerro Chena | Fundación Planificable</h3>
+            <p class="meta">Guiado interpretativo | Día de los Cerros | Julio 2023</p>
+          </div>
+          <div class="item">
+            <h3>Guiado Cerro Leoneras (4.954 m.s.n.m.)</h3>
+            <p class="meta">Expedición Cerro Leoneras | Diciembre 2023</p>
+          </div>
+
+          <h2>Información personal</h2>
+          <ul class="plain">
+            <li>Nacionalidad: Chileno</li>
+          </ul>
+
+          <h2>Contacto</h2>
+          <ul class="plain contact">
+            <li><strong>Teléfono:</strong> +56 9 4241 3456</li>
+            <li><strong>Correo:</strong> alberto.astudillov@gmail.com</li>
+            <li><strong>LinkedIn:</strong> linkedin.com/in/alberto-astudillo-8755732ab</li>
+          </ul>
+        </div>
+
+        <div class="col">
+          <h2>Experiencia laboral</h2>
+          <div class="item">
+            <h3>Guardaparque</h3>
+            <p class="meta">Las Torres Patagonia, Torres del Paine | Septiembre 2026 a la fecha</p>
+            <ul>
+              <li>Patrullaje Cerro Paine y permanencia.</li>
+              <li>Cierre Sendero Base Torres hasta Límite con CONAF.</li>
+              <li>Monitoreo y reporte diario.</li>
+              <li>Control de Gestión.</li>
+            </ul>
+          </div>
+          <div class="item">
+            <h3>Personal de barra</h3>
+            <p class="meta">Restorant La Casa Brasil | Mayo 2026 – Agosto 2026</p>
+            <ul>
+              <li>Limpieza y mantención de barra.</li>
+              <li>Distribución de bebestibles.</li>
+              <li>Preparador de postres (Açaí).</li>
+            </ul>
+          </div>
+          <div class="item">
+            <h3>Guardaparque</h3>
+            <p class="meta">Asociación Parque Cordillera | Noviembre 2025 – Abril 2026</p>
+            <ul>
+              <li>Mantención de senderos.</li>
+              <li>Orden y limpieza de recepción.</li>
+              <li>Patrullaje de distintos senderos de distintos parques.</li>
+              <li>Recepción de clientes (check-in y check-out).</li>
+              <li>Limpieza de baños y sector de basureros.</li>
+            </ul>
+          </div>
+          <div class="item">
+            <h3>Guardaparque</h3>
+            <p class="meta">Camping Reserva Longotoma | Mayo 2025 – Noviembre 2025</p>
+            <ul>
+              <li>Mantención de sitios de camping, recepción y baños.</li>
+              <li>Patrullajes en camping y playa.</li>
+              <li>Atención al cliente (hospitalidad).</li>
+              <li>Manejo de Transbank.</li>
+              <li>Ayudante en Taller de Educación Ambiental y Primer Encuentro con Caballos.</li>
+            </ul>
+          </div>
+          <div class="item">
+            <h3>Recepcionista</h3>
+            <p class="meta">Parque La Reina | Enero 2025 – Mayo 2025</p>
+            <ul>
+              <li>Recepción y registro de deportistas y visitantes.</li>
+            </ul>
+          </div>
+          <div class="item">
+            <h3>Vendedor integral</h3>
+            <p class="meta">Fashion's Park | Octubre 2020 – Junio 2022</p>
+            <ul>
+              <li>Conocimiento en vestuario de varón y jeans.</li>
+              <li>Reposición de productos.</li>
+              <li>Conocimientos en caja (apertura y cierre de caja, retiros, notas de crédito, cambios de productos, arqueo).</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== PAGE 2 ===================== -->
+    <section class="page">
+      <header class="banner small"></header>
+      <div class="cols">
+        <div class="col">
+          <h2>Cursos y certificaciones</h2>
+          <div class="item">
+            <h3>Primeros Socorros Avanzados en Lugares Remotos (W.A.F.A.)</h3>
+            <p class="meta">Primer Ascenso / Instructor Víctor Loaiza García, 55 hrs. pedagógicas | Septiembre 2024</p>
+          </div>
+          <div class="item">
+            <h3>Academia de Liderazgo | Juventudes Protagonistas</h3>
+            <p class="meta">Gobierno de Santiago / Fundación Observa Ciudadanía, 4 hrs. pedagógicas | Agosto 2024</p>
+          </div>
+          <div class="item">
+            <h3>Biodiversidad y Conservación de Humedales</h3>
+            <p class="meta">Universidad Santo Tomás / Facultad de Ciencias, 50 hrs. cronológicas | Julio 2024</p>
+          </div>
+          <div class="item">
+            <h3>Glaciares Chilenos: Cambio Climático, Adaptación y Biodiversidad</h3>
+            <p class="meta">ONG FIMA / Friedrich Ebert, dictado por U. Socioambiental | Julio 2024</p>
+          </div>
+          <div class="item">
+            <h3>Introducción al Derecho Ambiental</h3>
+            <p class="meta">ONG FIMA / Friedrich Ebert, dictado por U. Socioambiental | Junio 2024</p>
+          </div>
+          <div class="item">
+            <h3>Sociología del Antropoceno</h3>
+            <p class="meta">ONG FIMA / Friedrich Ebert, dictado por U. Socioambiental | Junio 2024</p>
+          </div>
+          <div class="item">
+            <h3>Capacitación No Discriminación</h3>
+            <p class="meta">Ministerio Secretaría General de Gobierno | Diciembre 2023</p>
+          </div>
+          <div class="item">
+            <h3>Guía de Turismo</h3>
+            <p class="meta">Centro de Formación Técnica Santo Tomás, 1044 hrs. pedagógicas | Julio 2023</p>
+          </div>
+          <div class="item">
+            <h3>Curso Inspector Educacional / Asistente de la Educación</h3>
+            <p class="meta">Instituto de Capacitación Bienestar &amp; Progreso, 40 hrs. pedagógicas | Julio – Septiembre 2020</p>
+          </div>
+
+
+        </div>
+
+        <div class="col">
+          <h2>Experiencia laboral</h2>
+          <div class="item">
+            <h3>Vendedor servicios médicos</h3>
+            <p class="meta">Unidad Coronaria Móvil (U.C.M.) | Marzo 2019 – Diciembre 2019</p>
+            <ul>
+              <li>Ventas mediante call center.</li>
+              <li>Atención y orientación al cliente, ingreso de nuevos clientes y reclamos.</li>
+              <li>Retención de clientes y posterior derivación al área según corresponda.</li>
+            </ul>
+          </div>
+          <div class="item">
+            <h3>Vendedor integral</h3>
+            <p class="meta">Head Chile | Marzo 2017 – Enero 2019</p>
+            <ul>
+              <li>Ventas y promoción de productos.</li>
+              <li>Atención y orientación al cliente.</li>
+              <li>Conocimiento en inventarios, depósitos en efectivo, manejo de caja y Transbank.</li>
+              <li>Jefe interino Head Chile, Portal La Reina.</li>
+            </ul>
+          </div>
+          <div class="item">
+            <h3>Cajero / Barman / Barista</h3>
+            <p class="meta">Delicias Restaurant – Grill &amp; Bar | Julio 2015 – Agosto 2016</p>
+            <ul>
+              <li>Apertura y cierre de caja, manejo de Transbank, cuadratura de caja, reportes de boucher y ventas diarias.</li>
+              <li>Ayuda en inventarios.</li>
+            </ul>
+          </div>
+
+
+
+          <h2>Voluntariados</h2>
+          <div class="item">
+            <h3>Banderillero Maratón de Santiago 2026</h3>
+            <p class="meta">Corporación Maratón de Santiago | Abril 2026</p>
+          </div>
+          <div class="item">
+            <h3>Día de los Patrimonios 2024 / Niñas, Niños y Adolescentes</h3>
+            <p class="meta">Ministerio de las Culturas | Noviembre 2024 · Palacio de La Moneda</p>
+          </div>
+          <div class="item">
+            <h3>Noche de Museos</h3>
+            <p class="meta">Ministerio de las Culturas | Octubre 2024 · Museo de Santiago Casa Colorada</p>
+          </div>
+          <div class="item">
+            <h3>Reforestación Gran Parque Costanera, Pte. Alto</h3>
+            <p class="meta">Fundación Biosfera Mía | Junio – Julio 2024</p>
+          </div>
+          <div class="item">
+            <h3>Desafío Ríos Limpios / Limpieza Río Mapocho</h3>
+            <p class="meta">Desafío Ríos Limpios / SiMiPlaneta / Mapocho Vivo / Austerra Society | Mayo 2024</p>
+          </div>
+          <div class="item">
+            <h3>Día de los Patrimonios</h3>
+            <p class="meta">Ministerio de las Culturas | Diciembre 2023 · Ex Oficinas Braden Copper (actual PRODEMU), guiado por Protectora de la Infancia</p>
+          </div>
+          <div class="item">
+            <h3>Santiago 2023</h3>
+            <p class="meta">Juegos Panamericanos y Parapanamericanos Santiago 2023 | Octubre – Noviembre 2023</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </body>
+</html>
