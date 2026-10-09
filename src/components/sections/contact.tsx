@@ -5,6 +5,7 @@ import { AnimalDecor } from "@/components/layout/animal-decor"
 import { Reveal } from "@/components/layout/reveal"
 import { FrameButton } from "@/components/ui/frame-button"
 import { siteConfig } from "@/config/site.config"
+import { IS_ARTIFACT } from "@/lib/asset"
 
 const { contact, availability, cv } = siteConfig
 
@@ -87,7 +88,7 @@ export function Contact() {
               <FrameButton href={contact.whatsapp} target="_blank" rel="noopener noreferrer" variant="moss" icon={<IconBrandWhatsapp />}>
                 Escribir por WhatsApp
               </FrameButton>
-              <FrameButton href={cv.href} download variant="dark" icon={<IconDownload />}>
+              <FrameButton href={cv.href} {...(IS_ARTIFACT ? { target: "_blank", rel: "noopener noreferrer" } : { download: true })} variant="dark" icon={<IconDownload />}>
                 {cv.label}
               </FrameButton>
             </Reveal>

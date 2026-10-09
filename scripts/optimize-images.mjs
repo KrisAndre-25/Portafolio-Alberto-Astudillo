@@ -91,7 +91,8 @@ async function photo(input, outDir, slug) {
  * (bright and unsaturated, which covers white and fake checkerboards) and
  * makes them transparent, with a 1px soft edge.
  */
-async function cutout(input, { minLight = 196, maxSat = 22 } = {}) {
+/** `everywhere: true` also clears enclosed white (e.g. the holes inside letters). */
+async function cutout(input, { minLight = 196, maxSat = 22, everywhere = false } = {}) {
   const { data, info } = await sharp(input)
     .ensureAlpha()
     .raw()
@@ -102,6 +103,7 @@ async function cutout(input, { minLight = 196, maxSat = 22 } = {}) {
     return Math.min(r, g, b) > minLight && Math.max(r, g, b) - Math.min(r, g, b) < maxSat
   }
   const seen = new Uint8Array(w * h)
+  if (everywhere) for (let p = 0; p < w * h; p++) if (isBg(p * 4)) seen[p] = 1
   const stack = []
   for (let x = 0; x < w; x++) stack.push(x, (h - 1) * w + x)
   for (let y = 0; y < h; y++) stack.push(y * w, y * w + w - 1)
@@ -224,22 +226,32 @@ async function profileAndLogo() {
     "alberto-astudillo",
   )
 
-  // Logo: the source is a circular emblem on a white square. Cut it to the
-  // circle so it sits on any background without a white box.
+  // Logo: "AA" monogram (LOGO-ALBERT.png), dark green on a white square.
+  // The white is removed (same flood fill as the animals), the mark trimmed
+  // and centred on a transparent square with a little air around it.
   const dir = path.join(OUT, "logo")
   ensure(dir)
-  const src = path.join(SRC, "LOGO-A.A.png")
-  const { width } = await sharp(src).metadata()
-  const r = width * 0.497
-  const mask = Buffer.from(
-    `<svg width="${width}" height="${width}"><circle cx="${width / 2}" cy="${width / 2}" r="${r}" fill="#fff"/></svg>`,
-  )
-  const round = await sharp(src).ensureAlpha().composite([{ input: mask, blend: "dest-in" }]).png().toBuffer()
-  const sizes = { "logo-512.webp": 512, "logo-96.webp": 96, "logo-192.png": 192, "logo-180.png": 180, "logo-64.png": 64, "logo-32.png": 32 }
+  const mark = await sharp(await cutout(await sharp(path.join(SRC, "LOGO-ALBERT.png")).toBuffer(), { everywhere: true }))
+    .trim({ threshold: 1 })
+    .toBuffer()
+  const { width: mw, height: mh } = await sharp(mark).metadata()
+  const side = Math.round(Math.max(mw, mh) * 1.12)
+  const square = await sharp({ create: { width: side, height: side, channels: 4, background: { r: 0, g: 0, b: 0, alpha: 0 } } })
+    .composite([{ input: mark, left: Math.round((side - mw) / 2), top: Math.round((side - mh) / 2) }])
+    .png()
+    .toBuffer()
+  const sizes = { "logo-512.webp": 512, "logo-128.webp": 128, "logo-192.png": 192, "logo-64.png": 64, "logo-32.png": 32 }
   for (const [name, s] of Object.entries(sizes)) {
-    const img = sharp(round).resize(s, s)
-    await (name.endsWith(".webp") ? img.webp({ quality: 85 }) : img.png({ compressionLevel: 9 })).toFile(path.join(dir, name))
+    const img = sharp(square).resize(s, s)
+    await (name.endsWith(".webp") ? img.webp({ quality: 90, alphaQuality: 100 }) : img.png({ compressionLevel: 9 })).toFile(path.join(dir, name))
   }
+  // iOS home-screen icon needs an opaque background: bone paper.
+  await sharp(square)
+    .resize(150, 150)
+    .extend({ top: 15, bottom: 15, left: 15, right: 15, background: { r: 241, g: 236, b: 226, alpha: 1 } })
+    .flatten({ background: { r: 241, g: 236, b: 226 } })
+    .png()
+    .toFile(path.join(dir, "logo-180.png"))
   manifest["logo"] = { width: 512, height: 512, variants: { md: { src: "/assets/logo/logo-512.webp", width: 512, height: 512 } } }
 
   // Open Graph image (1200x630) from the Torres del Paine towers photo.

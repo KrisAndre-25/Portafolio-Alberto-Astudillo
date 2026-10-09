@@ -1,5 +1,6 @@
 import generated from "./generated/certificates.json"
 import type { ImageVariant } from "./images"
+import { asset } from "@/lib/asset"
 
 export type CertificateFile = {
   original: string
@@ -22,7 +23,16 @@ export type Certificate = CertificateFile & {
   hours?: string
 }
 
-const files = generated as Record<string, CertificateFile>
+const files = Object.fromEntries(
+  Object.entries(generated as Record<string, CertificateFile>).map(([slug, f]) => [
+    slug,
+    {
+      ...f,
+      file: asset(f.file),
+      thumb: { md: { ...f.thumb.md, src: asset(f.thumb.md.src) }, sm: { ...f.thumb.sm, src: asset(f.thumb.sm.src) } },
+    },
+  ]),
+) as Record<string, CertificateFile>
 
 const cert = (slug: string, data: Pick<Certificate, "title" | "issuer" | "date" | "hours">): Certificate => {
   const file = files[slug]

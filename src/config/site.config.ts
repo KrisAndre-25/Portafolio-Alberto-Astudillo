@@ -3,6 +3,8 @@
  * Values marked `PENDIENTE` are placeholders waiting for Alberto's input.
  */
 
+import { asset } from "@/lib/asset"
+
 const whatsappNumber = "56942413456"
 const whatsappMessage = "Hola Alberto, vi tu portafolio y me gustaría conversar contigo."
 
@@ -41,7 +43,7 @@ export const siteConfig = {
 
   /** Updated CV generated from the original (see public/assets/cv). */
   cv: {
-    href: "/assets/cv/CV-Alberto-Astudillo-octubre-2026.pdf",
+    href: asset("/assets/cv/CV-Alberto-Astudillo-octubre-2026.pdf"),
     label: "Descargar CV",
   },
 

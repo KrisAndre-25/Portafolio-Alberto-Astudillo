@@ -28,7 +28,7 @@ src/
   components/ui/          third-party components (Aceternity/21st, adapted) + FrameButton, ModalDialog, Lightbox
   components/sections/    Hero, About, Experience (timeline), Skills, Milestones, Fauna, Certifications, Contact
   components/layout/      Navbar (top dock), SectionRail, ScrollProgress, Reveal, AnimalDecor, SectionHeading
-  components/decor/       hand-drawn SVG mountains, botanicals and the CSS 3D tree
+  components/decor/       hand-drawn SVG mountains and botanicals
   hooks/                  media queries, a11y theme, active section, hydration
 public/                   ORIGINALS (not committed, not deployed) + assets/ (optimized, committed)
 referencias/              components exactly as pasted by the user (not built)

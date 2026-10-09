@@ -17,6 +17,7 @@
   "ignorePatterns": [
     "referencias/**",
     "dist/**",
-    "scripts/**/*.py"
+    "scripts/**/*.py",
+    "dist-artifact/**"
   ]
 }

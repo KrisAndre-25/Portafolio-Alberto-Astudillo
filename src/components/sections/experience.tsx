@@ -1,5 +1,4 @@
 import { IconMapPin } from "@tabler/icons-react"
-import { Tree3D } from "@/components/decor/tree-3d"
 import { SectionHeading } from "@/components/layout/section-heading"
 import { Timeline, type TimelineEntry } from "@/components/ui/timeline"
 import { experience } from "@/data/experience"
@@ -56,19 +55,12 @@ export function Experience() {
       <Timeline
         data={data}
         header={
-          <div className="flex items-end justify-between gap-8">
-            <SectionHeading
-              id="experiencia-title"
-              eyebrow="Experiencia"
-              title="Trayectoria en parques y montaña"
-              intro="Solo el trabajo en parques, guardaparques y guiados de montaña, del más reciente al primero."
-            />
-            <div className="hidden shrink-0 items-end gap-6 pr-6 sm:flex">
-              <Tree3D size={0.8} />
-              <Tree3D size={1.15} />
-              <Tree3D size={0.65} />
-            </div>
-          </div>
+          <SectionHeading
+            id="experiencia-title"
+            eyebrow="Experiencia"
+            title="Trayectoria en parques y montaña"
+            intro="Solo el trabajo en parques, guardaparques y guiados de montaña, del más reciente al primero."
+          />
         }
       />
     </section>

@@ -2,7 +2,8 @@
 
 // Copied from referencias/morph-gallery.tsx. Changes: accessible labels in
 // Spanish, a `label` prop, and arrow/thumbnail/gradient colours from theme
-// tokens so they read on the light "paper" plates.
+// tokens so they read on the light "paper" plates; the render loop runs only
+// while something changes and autoplay pauses off screen (performance).
 
 import * as React from "react"
 
@@ -304,12 +305,26 @@ export default function MorphGallery({
 
   // A transition is requested by index changes and consumed by the loop.
   const request = React.useRef<{ from: number; to: number } | null>(null)
+  // Wakes the render loop, which sleeps whenever nothing is changing.
+  const wake = React.useRef<() => void>(() => {})
   const previous = React.useRef(active)
   React.useEffect(() => {
     if (previous.current === active) return
     request.current = { from: previous.current, to: active }
     previous.current = active
+    wake.current()
   }, [active])
+
+  // Off screen: no autoplay (and so no transitions to render).
+  const sectionRef = React.useRef<HTMLElement | null>(null)
+  const [onScreen, setOnScreen] = React.useState(false)
+  React.useEffect(() => {
+    const el = sectionRef.current
+    if (!el) return
+    const io = new IntersectionObserver(([entry]) => setOnScreen(entry.isIntersecting))
+    io.observe(el)
+    return () => io.disconnect()
+  }, [])
 
   // Rebuilding on the source list is the point: new images, new textures.
   const sources = items.map((i) => i.src).join("\n")
@@ -360,6 +375,7 @@ export default function MorphGallery({
       canvas.width = w
       canvas.height = h
       gl.viewport(0, 0, w, h)
+      kick()
     }
     const observer = new ResizeObserver(resize)
     observer.observe(canvas)
@@ -422,10 +438,17 @@ export default function MorphGallery({
       gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4)
     }
 
+    // On-demand loop: draws while a dissolve runs (or a request is waiting),
+    // then stops. A still slide costs nothing; the original redrew every frame.
     const frame = () => {
+      raf = 0
       draw()
-      raf = requestAnimationFrame(frame)
+      if (!disposed && (progress < 1 || request.current)) raf = requestAnimationFrame(frame)
     }
+    function kick() {
+      if (!raf && !disposed) raf = requestAnimationFrame(frame)
+    }
+    wake.current = kick
 
     const start = async () => {
       try {
@@ -479,8 +502,8 @@ export default function MorphGallery({
                   running = true
                   resize()
                   setReady(true)
-                  raf = requestAnimationFrame(frame)
                 }
+                kick()
               },
               () => {
                 // One broken URL should cost one slide, not the effect. Only
@@ -502,6 +525,7 @@ export default function MorphGallery({
     return () => {
       disposed = true
       cancelAnimationFrame(raf)
+      wake.current = () => {}
       observer.disconnect()
       canvas.removeEventListener("webglcontextlost", onLost)
       canvas.removeEventListener("webglcontextrestored", onRestored)
@@ -517,10 +541,10 @@ export default function MorphGallery({
 
   // ---- autoplay ------------------------------------------------------------
   React.useEffect(() => {
-    if (!autoplay || reduced || paused || items.length < 2) return
+    if (!autoplay || reduced || paused || !onScreen || items.length < 2) return
     const id = window.setInterval(() => go(active + 1), Math.max(autoplay, 600))
     return () => window.clearInterval(id)
-  }, [autoplay, reduced, paused, active, go, items.length])
+  }, [autoplay, reduced, paused, onScreen, active, go, items.length])
 
   React.useEffect(() => {
     // A tab in the background should not silently burn through the gallery.
@@ -564,6 +588,7 @@ export default function MorphGallery({
 
   return (
     <section
+      ref={sectionRef}
       className={"relative w-full overflow-hidden bg-black " + className}
       style={{ height }}
       role="region"

@@ -3,6 +3,7 @@ import { FloatingDock, type DockItem } from "@/components/ui/floating-dock"
 import { useA11yTheme } from "@/hooks/use-a11y-theme"
 import { useActiveSection } from "@/hooks/use-active-section"
 import { SECTIONS } from "@/config/sections"
+import { asset } from "@/lib/asset"
 
 const SECTION_IDS = SECTIONS.map((s) => s.id)
 
@@ -11,9 +12,9 @@ function Logo() {
     <a
       href="#inicio"
       data-no-underline
-      className="relative block size-12 shrink-0 rounded-full bg-bone p-0.5 shadow-[0_0_0_3px_color-mix(in_oklch,var(--sand)_55%,transparent),0_0_28px_-4px_color-mix(in_oklch,var(--sand)_60%,transparent)] transition-transform duration-300 hover:scale-110 md:size-[3.25rem] contrast:shadow-[0_0_0_2px_var(--foreground)]"
+      className="relative block size-11 shrink-0 rounded-full border-2 border-sand/70 bg-bone p-1 transition-transform duration-300 hover:scale-105 contrast:border-foreground"
     >
-      <img src="/assets/logo/logo-192.png" alt="Alberto Astudillo" width={52} height={52} className="size-full rounded-full" />
+      <img src={asset("/assets/logo/logo-128.webp")} alt="Alberto Astudillo" width={44} height={44} className="size-full object-contain" />
     </a>
   )
 }

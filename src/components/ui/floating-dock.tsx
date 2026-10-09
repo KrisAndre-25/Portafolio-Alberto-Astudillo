@@ -55,7 +55,7 @@ export const FloatingDock = ({
 }
 
 const surface =
-  "border border-border bg-card/80 text-foreground shadow-[var(--shadow-soft)] backdrop-blur-xl " +
+  "border border-border bg-card/92 text-foreground shadow-[var(--shadow-soft)] backdrop-blur-sm " +
   "contrast:bg-background contrast:border-2"
 
 const FloatingDockMobile = ({

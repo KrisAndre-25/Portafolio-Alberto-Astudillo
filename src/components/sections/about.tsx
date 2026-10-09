@@ -6,6 +6,7 @@ import { CardBody, CardContainer, CardItem } from "@/components/ui/3d-card"
 import { FrameButton } from "@/components/ui/frame-button"
 import { siteConfig } from "@/config/site.config"
 import { getImage, srcSet } from "@/data/images"
+import { IS_ARTIFACT } from "@/lib/asset"
 
 const photo = getImage("perfil/alberto-astudillo")
 
@@ -32,11 +33,11 @@ export function About() {
         <div className="relative order-2 min-w-0 lg:order-1">
           <div
             aria-hidden="true"
-            className="absolute inset-[8%] -z-10 rounded-[40%] bg-[radial-gradient(circle_at_30%_30%,color-mix(in_oklch,var(--moss)_45%,transparent),transparent_60%),radial-gradient(circle_at_75%_70%,color-mix(in_oklch,var(--clay)_40%,transparent),transparent_60%)] blur-3xl contrast:hidden"
+            className="absolute inset-[8%] -z-10 rounded-[40%] bg-[radial-gradient(circle_at_30%_30%,color-mix(in_oklch,var(--moss)_45%,transparent),transparent_60%),radial-gradient(circle_at_75%_70%,color-mix(in_oklch,var(--clay)_40%,transparent),transparent_70%)] contrast:hidden"
           />
           <NotroFlower className="absolute -top-4 -left-2 w-24 opacity-70 sm:w-28" />
           <CardContainer containerClassName="py-0">
-            <CardBody className="relative h-auto w-[min(88vw,24rem)] rounded-[2rem] border border-border bg-card/60 p-3 shadow-[var(--shadow-soft)] backdrop-blur-sm contrast:border-2">
+            <CardBody className="relative h-auto w-[min(88vw,24rem)] rounded-[2rem] border border-border bg-card/85 p-3 shadow-[var(--shadow-soft)] contrast:border-2">
               <CardItem translateZ={50} className="w-full">
                 <img
                   src={photo.variants.md.src}
@@ -52,7 +53,7 @@ export function About() {
               </CardItem>
               <CardItem
                 translateZ={90}
-                className="absolute bottom-7 left-7 rounded-full border border-border bg-background/85 px-4 py-2 text-xs font-medium tracking-[0.2em] uppercase backdrop-blur-md"
+                className="absolute bottom-7 left-7 rounded-full border border-border bg-background/90 px-4 py-2 text-xs font-medium tracking-[0.2em] uppercase"
               >
                 Guardaparque
               </CardItem>
@@ -106,7 +107,7 @@ export function About() {
           </Reveal>
 
           <Reveal delay={0.25} className="mt-9">
-            <FrameButton href={siteConfig.cv.href} download variant="dark" icon={<IconDownload className="size-4" aria-hidden="true" />}>
+            <FrameButton href={siteConfig.cv.href} {...(IS_ARTIFACT ? { target: "_blank", rel: "noopener noreferrer" } : { download: true })} variant="dark" icon={<IconDownload className="size-4" aria-hidden="true" />}>
               {siteConfig.cv.label}
             </FrameButton>
           </Reveal>

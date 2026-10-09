@@ -1,11 +1,13 @@
 import { IconChevronDown } from "@tabler/icons-react"
-import { useEffect, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import { MountainsStatic } from "@/components/decor/mountains-static"
 import { FrameButton } from "@/components/ui/frame-button"
 import { siteConfig } from "@/config/site.config"
 import { useReducedMotion, useSaveData } from "@/hooks/use-media-query"
+import { useOffscreenPause } from "@/hooks/use-offscreen-pause"
+import { asset } from "@/lib/asset"
 
-const POSTER = "/assets/video/landing-poster.webp"
+const POSTER = asset("/assets/video/landing-poster.webp")
 
 /** Landing: full-screen looping video (poster only for reduced motion / save-data). */
 export function Hero() {
@@ -24,14 +26,27 @@ export function Hero() {
   }, [])
   const { hero } = siteConfig
 
+  // Off screen the video and the scroll cue stop (no decoding, no repaints).
+  const sectionRef = useRef<HTMLElement>(null)
+  const videoRef = useRef<HTMLVideoElement>(null)
+  useOffscreenPause(sectionRef, {
+    margin: "0px",
+    onChange: (visible) => {
+      const v = videoRef.current
+      if (!v) return
+      if (visible) void v.play().catch(() => {})
+      else v.pause()
+    },
+  })
+
   // Entrance is CSS-only (.hero-enter in index.css): no JS needed to show the
   // text, so it paints early. The h1 only slides, so it counts as painted at once.
 
   return (
-    <section id="inicio" aria-labelledby="inicio-title" className="relative isolate flex h-dvh min-h-[38rem] w-full flex-col overflow-hidden">
+    <section ref={sectionRef} id="inicio" aria-labelledby="inicio-title" className="relative isolate flex h-dvh min-h-[38rem] w-full flex-col overflow-hidden">
       <img
         src={POSTER}
-        srcSet={`/assets/video/landing-poster-960.webp 960w, ${POSTER} 1920w`}
+        srcSet={`${asset("/assets/video/landing-poster-960.webp")} 960w, ${POSTER} 1920w`}
         sizes="100vw"
         alt=""
         width={1920}
@@ -41,6 +56,7 @@ export function Hero() {
       />
       {stillOnly || !loaded ? null : (
         <video
+          ref={videoRef}
           className="absolute inset-0 -z-20 size-full object-cover"
           autoPlay
           muted
@@ -51,9 +67,9 @@ export function Hero() {
           aria-hidden="true"
           onLoadedData={(e) => void e.currentTarget.play().catch(() => {})}
         >
-          <source src="/assets/video/landing-720.mp4" type="video/mp4" media="(max-width: 767px)" />
-          <source src="/assets/video/landing-1080.webm" type="video/webm" />
-          <source src="/assets/video/landing-1080.mp4" type="video/mp4" />
+          <source src={asset("/assets/video/landing-720.mp4")} type="video/mp4" media="(max-width: 767px)" />
+          <source src={asset("/assets/video/landing-1080.webm")} type="video/webm" />
+          <source src={asset("/assets/video/landing-1080.mp4")} type="video/mp4" />
         </video>
       )}
 

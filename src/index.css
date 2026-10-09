@@ -265,6 +265,7 @@
   .grain::after {
     content: "";
     position: fixed;
+    transform: translateZ(0);
     inset: 0;
     z-index: 60;
     pointer-events: none;
@@ -375,76 +376,15 @@
     --btn-fg: oklch(0 0 0);
   }
 
-  /* ---- Tree3D (from referencias/tree-loader.tsx) ------------------------ */
-  .tree3d-wrap {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: calc(50px * var(--tree-scale, 1));
-    height: calc(150px * var(--tree-scale, 1));
-    perspective: 900px;
-  }
-  .tree3d {
-    position: relative;
-    width: 50px;
-    height: 50px;
-    margin-top: 40px;
-    transform-style: preserve-3d;
-    transform: scale(var(--tree-scale, 1)) rotateX(-20deg) rotateY(30deg);
-    animation: tree3d-spin 9s linear infinite;
-  }
-  .tree3d > div {
-    position: absolute;
-    top: -50px;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    transform-style: preserve-3d;
-    transform: translateY(calc(25px * var(--x, 0))) translateZ(0);
-  }
-  .tree3d-branch span {
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(90deg, color-mix(in oklch, var(--moss) 80%, var(--forest)), var(--moss));
-    clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
-    border-bottom: 5px solid oklch(0 0 0 / 10%);
-    transform-origin: bottom;
-    transform: rotateY(calc(90deg * var(--i))) rotateX(30deg) translateZ(28.5px);
-  }
-  .tree3d-stem span {
-    position: absolute;
-    top: 110px;
-    left: calc(50% - 7.5px);
-    width: 15px;
-    height: 50%;
-    background: linear-gradient(90deg, var(--bark), var(--clay));
-    border-bottom: 5px solid oklch(0 0 0 / 10%);
-    transform-origin: bottom;
-    transform: rotateY(calc(90deg * var(--i))) translateZ(7.5px);
-  }
-  .tree3d-shadow {
-    position: absolute;
-    inset: 0;
-    background: oklch(0 0 0 / 40%);
-    filter: blur(20px);
-    transform-style: preserve-3d;
-    transform: rotateX(90deg) translateZ(-65px);
-  }
-  [data-theme="contrast"] .tree3d-branch span {
-    background: linear-gradient(90deg, oklch(0.35 0 0), oklch(0.55 0 0));
-  }
-  [data-theme="contrast"] .tree3d-stem span {
-    background: oklch(0.2 0 0);
-  }
 }
 
-@keyframes tree3d-spin {
-  from {
-    transform: scale(var(--tree-scale, 1)) rotateX(-20deg) rotateY(360deg);
-  }
-  to {
-    transform: scale(var(--tree-scale, 1)) rotateX(-20deg) rotateY(0deg);
-  }
+
+/* Animations stop while their container is off screen (use-offscreen-pause.ts). */
+[data-offscreen],
+[data-offscreen] *,
+[data-offscreen] *::before,
+[data-offscreen] *::after {
+  animation-play-state: paused !important;
 }
 
 /* Reveal on scroll (see components/layout/reveal.tsx). Only hidden once JS

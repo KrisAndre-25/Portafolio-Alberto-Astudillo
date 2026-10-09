@@ -18,6 +18,7 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { IconArrowUp, IconBrandLinkedin, IconBrandWhatsapp, IconMail } from "@tabler/icons-react";
 import { siteConfig } from "@/config/site.config";
+import { useOffscreenPause } from "@/hooks/use-offscreen-pause";
 import { cn } from "@/lib/utils";
 
 // Register ScrollTrigger once, in the browser only (safe for SSR and StrictMode).
@@ -248,6 +249,11 @@ export function CinematicFooter() {
   const giantTextRef = useRef<HTMLDivElement>(null);
   const headingRef = useRef<HTMLHeadingElement>(null);
   const linksRef = useRef<HTMLDivElement>(null);
+  const footerRef = useRef<HTMLElement>(null);
+
+  // The footer is fixed under the whole page: keep its aurora, marquee and
+  // heartbeat paused unless the curtain area is actually on screen.
+  useOffscreenPause(wrapperRef, { target: () => footerRef.current, margin: "0px" });
 
   useEffect(() => {
     if (!wrapperRef.current || prefersReducedMotion()) return;
@@ -291,7 +297,7 @@ export function CinematicFooter() {
 
       {/* Curtain: in normal flow, clip-path shows the fixed footer only inside this box. */}
       <div ref={wrapperRef} className="relative h-svh min-h-[34rem] w-full" style={{ clipPath: "polygon(0% 0, 100% 0%, 100% 100%, 0 100%)" }}>
-        <footer className="cinematic-footer-wrapper fixed bottom-0 left-0 flex h-svh min-h-[34rem] w-full flex-col justify-between overflow-hidden bg-background text-foreground">
+        <footer ref={footerRef} className="cinematic-footer-wrapper fixed bottom-0 left-0 flex h-svh min-h-[34rem] w-full flex-col justify-between overflow-hidden bg-background text-foreground">
           <div className="footer-aurora animate-footer-breathe pointer-events-none absolute top-1/2 left-1/2 z-0 h-[60vh] w-[80vw] -translate-x-1/2 -translate-y-1/2 rounded-[50%] blur-[80px]" />
           <div className="footer-bg-grid pointer-events-none absolute inset-0 z-0" />
 

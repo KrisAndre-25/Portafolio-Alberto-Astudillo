@@ -39,3 +39,6 @@ Thumbs.db
 /public/*.png
 /public/video_landing/
 /public/animales/
+
+# Claude page (Artifact) build
+/dist-artifact/

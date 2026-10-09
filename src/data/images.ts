@@ -1,4 +1,5 @@
 import generated from "./generated/images.json"
+import { asset } from "@/lib/asset"
 
 export type ImageVariant = { src: string; width: number; height: number }
 
@@ -10,7 +11,16 @@ export type ImageEntry = {
   variants: Record<string, ImageVariant>
 }
 
-const images = generated as Record<string, ImageEntry>
+// Paths in the manifest are site-absolute ("/assets/…"); resolve them against the build base.
+const images = Object.fromEntries(
+  Object.entries(generated as Record<string, ImageEntry>).map(([key, entry]) => [
+    key,
+    {
+      ...entry,
+      variants: Object.fromEntries(Object.entries(entry.variants).map(([k, v]) => [k, { ...v, src: asset(v.src) }])),
+    },
+  ]),
+) as Record<string, ImageEntry>
 
 /** Looks up an optimized image by its key (e.g. "hitos/torres-del-paine-04"). */
 export function getImage(key: string): ImageEntry {

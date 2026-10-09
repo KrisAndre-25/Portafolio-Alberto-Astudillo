@@ -4,6 +4,7 @@ import { FrameButton } from "@/components/ui/frame-button"
 import { ModalDialog } from "@/components/ui/modal-dialog"
 import type { Certificate } from "@/data/certificates"
 import { useMediaQuery } from "@/hooks/use-media-query"
+import { IS_ARTIFACT } from "@/lib/asset"
 
 /**
  * Certificate modal: the PDF inline on wide screens (with an image fallback
@@ -38,7 +39,7 @@ export default function CertificateViewer({ cert, onClose }: { cert: Certificate
             {[cert.issuer, cert.date, cert.hours].filter(Boolean).join(" · ")}
           </p>
           <div className="min-h-0 flex-1 overflow-hidden rounded-2xl border border-on-media/20 bg-paper">
-            {cert.type === "pdf" && wide ? (
+            {cert.type === "pdf" && wide && !IS_ARTIFACT ? (
               <object data={`${cert.file}#view=FitH`} type="application/pdf" aria-label={cert.title} className="block h-[min(72dvh,52rem)] w-full">
                 <div className="grid h-full place-items-center p-4">{preview}</div>
               </object>
@@ -49,9 +50,11 @@ export default function CertificateViewer({ cert, onClose }: { cert: Certificate
             )}
           </div>
           <div className="mt-4 flex flex-wrap gap-3">
-            <FrameButton variant="light" href={cert.file} download icon={<IconDownload />}>
-              Descargar
-            </FrameButton>
+            {IS_ARTIFACT ? null : (
+              <FrameButton variant="light" href={cert.file} download icon={<IconDownload />}>
+                Descargar
+              </FrameButton>
+            )}
             <FrameButton href={cert.file} target="_blank" rel="noopener noreferrer" variant="dark" icon={<IconExternalLink />}>
               Abrir en pestaña nueva
             </FrameButton>
