@@ -7,7 +7,7 @@
 /*
  * Two themes, one set of tokens:
  *   - natural (default): forest black, moss, glacier blue, earth tones, bone.
- *   - contrast: [data-theme="contrast"] on <html>, white / black / greys only,
+ *   - contrast: [data-a11y="contrast"] on <html>, white / black / greys only,
  *     for colour-blind and low-vision visitors (toggle in the dock).
  * Components must only use these tokens, never raw colours.
  *
@@ -16,7 +16,7 @@
  */
 
 @custom-variant dark (&:is(.dark *));
-@custom-variant contrast (&:where([data-theme="contrast"], [data-theme="contrast"] *));
+@custom-variant contrast (&:where([data-a11y="contrast"], [data-a11y="contrast"] *));
 
 @theme inline {
   --font-heading: "Fraunces Variable", ui-serif, Georgia, serif;
@@ -127,7 +127,7 @@
 }
 
 /* ---- High-contrast / colour-blind theme: white, black and greys --------- */
-[data-theme="contrast"] {
+[data-a11y="contrast"] {
   --forest: oklch(0 0 0);
   --moss: oklch(0 0 0);
   --glacier: oklch(0.35 0 0);
@@ -218,13 +218,13 @@
     outline: 2px solid var(--ring);
     outline-offset: 3px;
   }
-  [data-theme="contrast"] :focus-visible {
+  [data-a11y="contrast"] :focus-visible {
     outline: 3px solid var(--ring);
     outline-offset: 3px;
     box-shadow: 0 0 0 6px var(--background);
   }
   /* In the contrast theme links are always underlined, so they never rely on colour. */
-  [data-theme="contrast"] main a:not([data-no-underline]) {
+  [data-a11y="contrast"] main a:not([data-no-underline]) {
     text-decoration: underline;
     text-underline-offset: 3px;
   }
@@ -335,7 +335,7 @@
     outline: 2px solid var(--ring);
     outline-offset: 3px;
   }
-  [data-theme="contrast"] .theme-switch-slider {
+  [data-a11y="contrast"] .theme-switch-slider {
     box-shadow: inset 0 0 0 2px oklch(0 0 0);
   }
   .theme-switch-star {
@@ -461,7 +461,7 @@
     --btn-fg: var(--forest);
   }
   /* Contrast theme: white block, black frame and text. */
-  [data-theme="contrast"] .btn-frame {
+  [data-a11y="contrast"] .btn-frame {
     --btn-bg: oklch(1 0 0);
     --btn-line: oklch(0 0 0);
     --btn-fg: oklch(0 0 0);
@@ -512,3 +512,18 @@
     transform: translateY(24px);
   }
 }
+
+/*
+ * Pages embedded by a host that injects its own base styles (the Claude page
+ * adds an unlayered body reset with a dark-on-light colour and a 14px system
+ * font) must not win over the theme: unlayered and more specific than any reset.
+ */
+html body {
+  margin: 0;
+  background: var(--background);
+  color: var(--foreground);
+  font-family: "Geist Variable", ui-sans-serif, system-ui, sans-serif;
+  font-size: 1rem;
+  line-height: 1.65;
+}
+

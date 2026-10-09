@@ -46,7 +46,7 @@ const STYLES = `
   --pill-shadow-hover: color-mix(in oklch, var(--background) 70%, transparent);
   --pill-highlight-hover: color-mix(in oklch, var(--foreground) 20%, transparent);
 }
-[data-theme="contrast"] .cinematic-footer-wrapper {
+[data-a11y="contrast"] .cinematic-footer-wrapper {
   --pill-bg-1: var(--background);
   --pill-bg-2: var(--background);
   --pill-border: var(--foreground);
@@ -151,7 +151,7 @@ const STYLES = `
   background-clip: text;
   filter: drop-shadow(0px 0px 20px color-mix(in oklch, var(--foreground) 15%, transparent));
 }
-[data-theme="contrast"] .footer-text-glow {
+[data-a11y="contrast"] .footer-text-glow {
   background: none;
   -webkit-text-fill-color: var(--foreground);
   filter: none;

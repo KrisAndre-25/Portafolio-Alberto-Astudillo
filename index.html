@@ -38,7 +38,7 @@
         try {
           var saved = localStorage.getItem("aa-theme")
           var contrast = saved ? saved === "contrast" : matchMedia("(prefers-contrast: more)").matches
-          if (contrast) document.documentElement.setAttribute("data-theme", "contrast")
+          if (contrast) document.documentElement.setAttribute("data-a11y", "contrast")
         } catch (e) {}
       })()
     </script>

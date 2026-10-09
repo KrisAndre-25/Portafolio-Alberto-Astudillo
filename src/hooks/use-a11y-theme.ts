@@ -5,7 +5,7 @@ import { useCallback, useSyncExternalStore } from "react"
  * an inline script in index.html (no flash); this hook keeps React in sync.
  */
 export const THEME_STORAGE_KEY = "aa-theme"
-const ATTR = "data-theme"
+const ATTR = "data-a11y"
 
 const listeners = new Set<() => void>()
 

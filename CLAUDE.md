@@ -36,7 +36,7 @@ scripts/                  asset, certificate, CV, pre-render and screenshot scri
 ```
 
 ## Conventions
-- Never hardcode colours: use tokens from `src/index.css` (`bg-background`, `text-sand`, `bg-moss`…). Every token is remapped in the high-contrast theme (`[data-theme="contrast"]`, Tailwind variant `contrast:`). State must never rely on colour alone.
+- Never hardcode colours: use tokens from `src/index.css` (`bg-background`, `text-sand`, `bg-moss`…). Every token is remapped in the high-contrast theme (`[data-a11y="contrast"]`, Tailwind variant `contrast:`). State must never rely on colour alone.
 - Respect `prefers-reduced-motion` in anything that moves.
 - CTAs use `FrameButton` (`@/components/ui/frame-button`, variants light/dark/moss), never styled-components.
 - Do not invent facts about Alberto: text comes from his CV or `site.config.ts`.
