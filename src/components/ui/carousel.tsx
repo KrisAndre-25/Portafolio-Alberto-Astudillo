@@ -1,7 +1,7 @@
 "use client";
 /**
  * Aceternity Carousel, adapted:
- * - valid markup (li directly in ul), one region with aria-roledescription;
+ * - ARIA carousel pattern: a region with group slides (no list markup);
  * - slides carry srcSet/sizes/alt and an `onButtonClick` action;
  * - keyboard (←/→), swipe on touch, lazy images except the first;
  * - parallax only while the pointer moves (no endless rAF per slide);
@@ -33,7 +33,7 @@ interface SlideProps {
 }
 
 const Slide = ({ slide, index, total, current, handleSlideClick, onButtonClick }: SlideProps) => {
-  const slideRef = useRef<HTMLLIElement>(null);
+  const slideRef = useRef<HTMLDivElement>(null);
   const frameRef = useRef<number | undefined>(undefined);
   const isCurrent = current === index;
 
@@ -55,7 +55,7 @@ const Slide = ({ slide, index, total, current, handleSlideClick, onButtonClick }
   const { src, srcSet, sizes, alt, button, title, meta } = slide;
 
   return (
-    <li
+    <div
       ref={slideRef}
       role="group"
       aria-roledescription="diapositiva"
@@ -120,7 +120,7 @@ const Slide = ({ slide, index, total, current, handleSlideClick, onButtonClick }
           </button>
         </div>
       </article>
-    </li>
+    </div>
   );
 };
 
@@ -180,7 +180,7 @@ export default function Carousel({ slides, label = "Carrusel", onButtonClick }: 
       }}
       style={{ touchAction: "pan-y" }}
     >
-      <ul
+      <div
         id={`${id}-slides`}
         className="absolute mx-[-3vmin] flex transition-transform duration-1000 ease-in-out motion-reduce:transition-none"
         style={{ transform: `translateX(-${current * (100 / slides.length)}%)` }}
@@ -196,7 +196,7 @@ export default function Carousel({ slides, label = "Carrusel", onButtonClick }: 
             onButtonClick={onButtonClick}
           />
         ))}
-      </ul>
+      </div>
 
       <div className="absolute top-[calc(100%+1.5rem)] flex w-full items-center justify-center">
         <CarouselControl type="previous" title="Hito anterior" handleClick={() => go(current - 1)} />

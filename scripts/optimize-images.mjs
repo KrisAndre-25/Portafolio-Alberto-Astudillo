@@ -21,7 +21,7 @@ const MANIFEST = path.join(ROOT, "src", "data", "generated", "images.json")
 const withVideo = !process.argv.includes("--no-video")
 
 /** Widths generated for photos. Never upscaled past the original. */
-const PHOTO_WIDTHS = { lg: 2000, md: 1200, sm: 480 }
+const PHOTO_WIDTHS = { lg: 2000, md: 1200, card: 800, sm: 480 }
 
 /**
  * Milestone groups: `match` finds the original files in public/, `slug` is the
@@ -235,7 +235,7 @@ async function profileAndLogo() {
     `<svg width="${width}" height="${width}"><circle cx="${width / 2}" cy="${width / 2}" r="${r}" fill="#fff"/></svg>`,
   )
   const round = await sharp(src).ensureAlpha().composite([{ input: mask, blend: "dest-in" }]).png().toBuffer()
-  const sizes = { "logo-512.webp": 512, "logo-192.png": 192, "logo-180.png": 180, "logo-64.png": 64, "logo-32.png": 32 }
+  const sizes = { "logo-512.webp": 512, "logo-96.webp": 96, "logo-192.png": 192, "logo-180.png": 180, "logo-64.png": 64, "logo-32.png": 32 }
   for (const [name, s] of Object.entries(sizes)) {
     const img = sharp(round).resize(s, s)
     await (name.endsWith(".webp") ? img.webp({ quality: 85 }) : img.png({ compressionLevel: 9 })).toFile(path.join(dir, name))
@@ -250,7 +250,7 @@ async function profileAndLogo() {
     .toFile(path.join(OUT, "og-image.jpg"))
 }
 
-function video() {
+async function video() {
   const dir = path.join(OUT, "video")
   ensure(dir)
   const input = path.join(SRC, "video_landing", "video_landing.mp4")
@@ -261,6 +261,8 @@ function video() {
   run(["-an", "-vf", "scale=1920:-2", "-c:v", "libx264", "-preset", "slow", "-crf", "26", "-pix_fmt", "yuv420p", "-movflags", "+faststart", path.join(dir, "landing-1080.mp4")])
   run(["-an", "-vf", "scale=1280:-2", "-c:v", "libx264", "-preset", "slow", "-crf", "27", "-pix_fmt", "yuv420p", "-movflags", "+faststart", path.join(dir, "landing-720.mp4")])
   run(["-an", "-vf", "scale=1920:-2", "-c:v", "libvpx-vp9", "-crf", "36", "-b:v", "0", "-row-mt", "1", "-deadline", "good", "-cpu-used", "4", path.join(dir, "landing-1080.webm")])
+  // Smaller poster for phones (the hero's first paint).
+  await sharp(poster).resize({ width: 960 }).webp({ quality: 72 }).toFile(path.join(dir, "landing-poster-960.webp"))
   return sharp(poster)
     .webp({ quality: 75 })
     .toFile(path.join(dir, "landing-poster.webp"))

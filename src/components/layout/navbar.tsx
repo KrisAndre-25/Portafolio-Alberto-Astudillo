@@ -13,7 +13,7 @@ function Logo() {
       data-no-underline
       className="block size-11 shrink-0 overflow-hidden rounded-full ring-1 ring-border transition-transform hover:scale-105"
     >
-      <img src="/assets/logo/logo-192.png" alt="Alberto Astudillo" width={44} height={44} className="size-full" />
+      <img src="/assets/logo/logo-96.webp" alt="Alberto Astudillo" width={44} height={44} className="size-full" />
     </a>
   )
 }

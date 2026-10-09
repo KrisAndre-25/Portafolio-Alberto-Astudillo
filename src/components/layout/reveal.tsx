@@ -1,31 +1,50 @@
-import { motion, useReducedMotion } from "motion/react"
+import { useEffect, useRef } from "react"
 import type * as React from "react"
 
 type RevealProps = {
   children: React.ReactNode
   className?: string
-  /** Seconds. Keep small: siblings use 0, 0.08, 0.16… */
+  /** Seconds. Keep small: siblings use 0, 0.04, 0.08… */
   delay?: number
   as?: "div" | "li" | "article" | "header"
 }
 
-/** Fades and lifts its content in once, when it first enters the viewport. */
-export function Reveal({ children, className, delay = 0, as = "div" }: RevealProps) {
-  const reduced = useReducedMotion()
-  const Component = motion[as]
-  if (reduced) {
-    const Static = as
-    return <Static className={className}>{children}</Static>
-  }
+// One observer for every revealed element on the page (cheaper than one each).
+let observer: IntersectionObserver | null = null
+const getObserver = () =>
+  (observer ??= new IntersectionObserver(
+    (entries) => {
+      for (const entry of entries) {
+        if (!entry.isIntersecting) continue
+        entry.target.setAttribute("data-revealed", "")
+        observer?.unobserve(entry.target)
+      }
+    },
+    { rootMargin: "0px 0px -12% 0px" },
+  ))
+
+/**
+ * Fades and lifts its content in once, when it first enters the viewport.
+ * CSS does the motion (`.reveal` in index.css); reduced motion shows it as is.
+ */
+export function Reveal({ children, className, delay = 0, as: Tag = "div" }: RevealProps) {
+  const ref = useRef<HTMLElement>(null)
+
+  useEffect(() => {
+    const el = ref.current
+    if (!el) return
+    const io = getObserver()
+    io.observe(el)
+    return () => io.unobserve(el)
+  }, [])
+
   return (
-    <Component
-      className={className}
-      initial={{ opacity: 0, y: 18 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "0px 0px -12% 0px" }}
-      transition={{ duration: 0.7, delay, ease: [0.22, 1, 0.36, 1] }}
+    <Tag
+      ref={ref as React.Ref<never>}
+      className={className ? `reveal ${className}` : "reveal"}
+      style={delay ? ({ "--reveal-delay": `${delay}s` } as React.CSSProperties) : undefined}
     >
       {children}
-    </Component>
+    </Tag>
   )
 }

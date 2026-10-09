@@ -222,6 +222,11 @@
         "width": 1200,
         "height": 800
       },
+      "card": {
+        "src": "/assets/hitos/asics-golden-run-21k-01-card.webp",
+        "width": 800,
+        "height": 533
+      },
       "sm": {
         "src": "/assets/hitos/asics-golden-run-21k-01-sm.webp",
         "width": 480,
@@ -243,6 +248,11 @@
         "src": "/assets/hitos/asics-golden-run-21k-02-md.webp",
         "width": 853,
         "height": 1280
+      },
+      "card": {
+        "src": "/assets/hitos/asics-golden-run-21k-02-card.webp",
+        "width": 800,
+        "height": 1200
       },
       "sm": {
         "src": "/assets/hitos/asics-golden-run-21k-02-sm.webp",
@@ -266,6 +276,11 @@
         "width": 853,
         "height": 1280
       },
+      "card": {
+        "src": "/assets/hitos/asics-golden-run-21k-03-card.webp",
+        "width": 800,
+        "height": 1200
+      },
       "sm": {
         "src": "/assets/hitos/asics-golden-run-21k-03-sm.webp",
         "width": 480,
@@ -287,6 +302,11 @@
         "src": "/assets/hitos/asics-golden-run-21k-04-md.webp",
         "width": 853,
         "height": 1280
+      },
+      "card": {
+        "src": "/assets/hitos/asics-golden-run-21k-04-card.webp",
+        "width": 800,
+        "height": 1200
       },
       "sm": {
         "src": "/assets/hitos/asics-golden-run-21k-04-sm.webp",
@@ -310,6 +330,11 @@
         "width": 853,
         "height": 1280
       },
+      "card": {
+        "src": "/assets/hitos/asics-golden-run-21k-05-card.webp",
+        "width": 800,
+        "height": 1200
+      },
       "sm": {
         "src": "/assets/hitos/asics-golden-run-21k-05-sm.webp",
         "width": 480,
@@ -331,6 +356,11 @@
         "src": "/assets/hitos/corrida-canina-2k-01-md.webp",
         "width": 853,
         "height": 1280
+      },
+      "card": {
+        "src": "/assets/hitos/corrida-canina-2k-01-card.webp",
+        "width": 800,
+        "height": 1200
       },
       "sm": {
         "src": "/assets/hitos/corrida-canina-2k-01-sm.webp",
@@ -354,6 +384,11 @@
         "width": 854,
         "height": 1280
       },
+      "card": {
+        "src": "/assets/hitos/corrida-canina-2k-02-card.webp",
+        "width": 800,
+        "height": 1199
+      },
       "sm": {
         "src": "/assets/hitos/corrida-canina-2k-02-sm.webp",
         "width": 480,
@@ -375,6 +410,11 @@
         "src": "/assets/hitos/corrida-canina-2k-03-md.webp",
         "width": 1200,
         "height": 800
+      },
+      "card": {
+        "src": "/assets/hitos/corrida-canina-2k-03-card.webp",
+        "width": 800,
+        "height": 533
       },
       "sm": {
         "src": "/assets/hitos/corrida-canina-2k-03-sm.webp",
@@ -398,6 +438,11 @@
         "width": 1200,
         "height": 800
       },
+      "card": {
+        "src": "/assets/hitos/corrida-mapocho-rio-arriba-10k-01-card.webp",
+        "width": 800,
+        "height": 533
+      },
       "sm": {
         "src": "/assets/hitos/corrida-mapocho-rio-arriba-10k-01-sm.webp",
         "width": 480,
@@ -419,6 +464,11 @@
         "src": "/assets/hitos/corrida-pride-run-7k-01-md.webp",
         "width": 1200,
         "height": 675
+      },
+      "card": {
+        "src": "/assets/hitos/corrida-pride-run-7k-01-card.webp",
+        "width": 800,
+        "height": 450
       },
       "sm": {
         "src": "/assets/hitos/corrida-pride-run-7k-01-sm.webp",
@@ -442,6 +492,11 @@
         "width": 853,
         "height": 1280
       },
+      "card": {
+        "src": "/assets/hitos/corrida-pride-run-7k-02-card.webp",
+        "width": 800,
+        "height": 1200
+      },
       "sm": {
         "src": "/assets/hitos/corrida-pride-run-7k-02-sm.webp",
         "width": 480,
@@ -463,6 +518,11 @@
         "src": "/assets/hitos/corrida-pride-run-7k-03-md.webp",
         "width": 960,
         "height": 1280
+      },
+      "card": {
+        "src": "/assets/hitos/corrida-pride-run-7k-03-card.webp",
+        "width": 800,
+        "height": 1067
       },
       "sm": {
         "src": "/assets/hitos/corrida-pride-run-7k-03-sm.webp",
@@ -486,6 +546,11 @@
         "width": 993,
         "height": 1317
       },
+      "card": {
+        "src": "/assets/hitos/cumbre-cerro-leoneras-01-card.webp",
+        "width": 800,
+        "height": 1061
+      },
       "sm": {
         "src": "/assets/hitos/cumbre-cerro-leoneras-01-sm.webp",
         "width": 480,
@@ -507,6 +572,11 @@
         "src": "/assets/hitos/gp-parque-cordillera-01-md.webp",
         "width": 1200,
         "height": 1597
+      },
+      "card": {
+        "src": "/assets/hitos/gp-parque-cordillera-01-card.webp",
+        "width": 800,
+        "height": 1065
       },
       "sm": {
         "src": "/assets/hitos/gp-parque-cordillera-01-sm.webp",
@@ -530,6 +600,11 @@
         "width": 853,
         "height": 1280
       },
+      "card": {
+        "src": "/assets/hitos/marley-coffee-stgo-10k-01-card.webp",
+        "width": 800,
+        "height": 1200
+      },
       "sm": {
         "src": "/assets/hitos/marley-coffee-stgo-10k-01-sm.webp",
         "width": 480,
@@ -551,6 +626,11 @@
         "src": "/assets/hitos/marley-coffee-stgo-10k-02-md.webp",
         "width": 853,
         "height": 1280
+      },
+      "card": {
+        "src": "/assets/hitos/marley-coffee-stgo-10k-02-card.webp",
+        "width": 800,
+        "height": 1200
       },
       "sm": {
         "src": "/assets/hitos/marley-coffee-stgo-10k-02-sm.webp",
@@ -574,6 +654,11 @@
         "width": 853,
         "height": 1280
       },
+      "card": {
+        "src": "/assets/hitos/marley-coffee-stgo-10k-03-card.webp",
+        "width": 800,
+        "height": 1200
+      },
       "sm": {
         "src": "/assets/hitos/marley-coffee-stgo-10k-03-sm.webp",
         "width": 480,
@@ -595,6 +680,11 @@
         "src": "/assets/hitos/marley-coffee-stgo-10k-04-md.webp",
         "width": 1200,
         "height": 800
+      },
+      "card": {
+        "src": "/assets/hitos/marley-coffee-stgo-10k-04-card.webp",
+        "width": 800,
+        "height": 533
       },
       "sm": {
         "src": "/assets/hitos/marley-coffee-stgo-10k-04-sm.webp",
@@ -618,6 +708,11 @@
         "width": 853,
         "height": 1280
       },
+      "card": {
+        "src": "/assets/hitos/marley-coffee-stgo-10k-05-card.webp",
+        "width": 800,
+        "height": 1200
+      },
       "sm": {
         "src": "/assets/hitos/marley-coffee-stgo-10k-05-sm.webp",
         "width": 480,
@@ -639,6 +734,11 @@
         "src": "/assets/hitos/torres-del-paine-01-md.webp",
         "width": 1200,
         "height": 1600
+      },
+      "card": {
+        "src": "/assets/hitos/torres-del-paine-01-card.webp",
+        "width": 800,
+        "height": 1067
       },
       "sm": {
         "src": "/assets/hitos/torres-del-paine-01-sm.webp",
@@ -662,6 +762,11 @@
         "width": 1200,
         "height": 1600
       },
+      "card": {
+        "src": "/assets/hitos/torres-del-paine-02-card.webp",
+        "width": 800,
+        "height": 1067
+      },
       "sm": {
         "src": "/assets/hitos/torres-del-paine-02-sm.webp",
         "width": 480,
@@ -683,6 +788,11 @@
         "src": "/assets/hitos/torres-del-paine-03-md.webp",
         "width": 1200,
         "height": 1600
+      },
+      "card": {
+        "src": "/assets/hitos/torres-del-paine-03-card.webp",
+        "width": 800,
+        "height": 1067
       },
       "sm": {
         "src": "/assets/hitos/torres-del-paine-03-sm.webp",
@@ -706,6 +816,11 @@
         "width": 1200,
         "height": 1600
       },
+      "card": {
+        "src": "/assets/hitos/torres-del-paine-04-card.webp",
+        "width": 800,
+        "height": 1067
+      },
       "sm": {
         "src": "/assets/hitos/torres-del-paine-04-sm.webp",
         "width": 480,
@@ -727,6 +842,11 @@
         "src": "/assets/hitos/torres-del-paine-05-md.webp",
         "width": 1200,
         "height": 1600
+      },
+      "card": {
+        "src": "/assets/hitos/torres-del-paine-05-card.webp",
+        "width": 800,
+        "height": 1067
       },
       "sm": {
         "src": "/assets/hitos/torres-del-paine-05-sm.webp",
@@ -750,6 +870,11 @@
         "width": 1200,
         "height": 1600
       },
+      "card": {
+        "src": "/assets/hitos/torres-del-paine-06-card.webp",
+        "width": 800,
+        "height": 1067
+      },
       "sm": {
         "src": "/assets/hitos/torres-del-paine-06-sm.webp",
         "width": 480,
@@ -771,6 +896,11 @@
         "src": "/assets/hitos/torres-del-paine-07-md.webp",
         "width": 1200,
         "height": 1600
+      },
+      "card": {
+        "src": "/assets/hitos/torres-del-paine-07-card.webp",
+        "width": 800,
+        "height": 1067
       },
       "sm": {
         "src": "/assets/hitos/torres-del-paine-07-sm.webp",
@@ -794,6 +924,11 @@
         "width": 1200,
         "height": 1600
       },
+      "card": {
+        "src": "/assets/hitos/torres-del-paine-08-card.webp",
+        "width": 800,
+        "height": 1067
+      },
       "sm": {
         "src": "/assets/hitos/torres-del-paine-08-sm.webp",
         "width": 480,
@@ -816,6 +951,11 @@
         "width": 1200,
         "height": 1600
       },
+      "card": {
+        "src": "/assets/hitos/torres-del-paine-09-card.webp",
+        "width": 800,
+        "height": 1067
+      },
       "sm": {
         "src": "/assets/hitos/torres-del-paine-09-sm.webp",
         "width": 480,
@@ -837,6 +977,11 @@
         "src": "/assets/hitos/trekking-riscos-del-sauce-01-md.webp",
         "width": 960,
         "height": 1280
+      },
+      "card": {
+        "src": "/assets/hitos/trekking-riscos-del-sauce-01-card.webp",
+        "width": 800,
+        "height": 1067
       },
       "sm": {
         "src": "/assets/hitos/trekking-riscos-del-sauce-01-sm.webp",
@@ -869,6 +1014,11 @@
         "src": "/assets/perfil/alberto-astudillo-md.webp",
         "width": 960,
         "height": 1280
+      },
+      "card": {
+        "src": "/assets/perfil/alberto-astudillo-card.webp",
+        "width": 800,
+        "height": 1067
       },
       "sm": {
         "src": "/assets/perfil/alberto-astudillo-sm.webp",

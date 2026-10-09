@@ -23,6 +23,10 @@
     <meta property="og:image:height" content="630" />
     <meta name="twitter:card" content="summary_large_image" />
 
+    <!-- Hero fonts: fetched with the HTML instead of after the CSS. -->
+    <link rel="preload" as="font" type="font/woff2" crossorigin href="/node_modules/@fontsource-variable/fraunces/files/fraunces-latin-wght-normal.woff2" />
+    <link rel="preload" as="font" type="font/woff2" crossorigin href="/node_modules/@fontsource-variable/geist/files/geist-latin-wght-normal.woff2" />
+
     <link rel="icon" type="image/png" sizes="32x32" href="/assets/logo/logo-32.png" />
     <link rel="icon" type="image/png" sizes="192x192" href="/assets/logo/logo-192.png" />
     <link rel="apple-touch-icon" href="/assets/logo/logo-180.png" />
@@ -30,6 +34,7 @@
     <!-- Applies the saved accessibility theme before the first paint (no flash). -->
     <script>
       ;(function () {
+        document.documentElement.classList.add("js")
         try {
           var saved = localStorage.getItem("aa-theme")
           var contrast = saved ? saved === "contrast" : matchMedia("(prefers-contrast: more)").matches

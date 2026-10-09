@@ -15,7 +15,7 @@ const slides: SlideData[] = milestones.map((m) => {
     title: m.title,
     button: count > 1 ? `Ver ${count} fotos` : "Ver foto",
     src: cover.image.variants.md.src,
-    srcSet: srcSet(cover.image, ["sm", "md"]),
+    srcSet: srcSet(cover.image, ["sm", "card", "md"]),
     sizes: "min(78vmin, 34rem)",
     alt: cover.alt,
     meta: [CATEGORY_LABEL[m.category], m.date, `${count} ${count === 1 ? "foto" : "fotos"}`].filter(Boolean).join(" · "),
