@@ -36,20 +36,23 @@ export type DockItem = {
 export const FloatingDock = ({
   items,
   leading,
+  trailing,
   desktopClassName,
   mobileClassName,
   label = "Navegación principal",
 }: {
   items: DockItem[]
   leading?: React.ReactNode
+  /** Rendered after the items (e.g. the contrast switch), on desktop and mobile. */
+  trailing?: React.ReactNode
   desktopClassName?: string
   mobileClassName?: string
   label?: string
 }) => {
   return (
     <>
-      <FloatingDockDesktop items={items} leading={leading} className={desktopClassName} label={label} />
-      <FloatingDockMobile items={items} leading={leading} className={mobileClassName} label={label} />
+      <FloatingDockDesktop items={items} leading={leading} trailing={trailing} className={desktopClassName} label={label} />
+      <FloatingDockMobile items={items} leading={leading} trailing={trailing} className={mobileClassName} label={label} />
     </>
   )
 }
@@ -61,11 +64,13 @@ const surface =
 const FloatingDockMobile = ({
   items,
   leading,
+  trailing,
   className,
   label,
 }: {
   items: DockItem[]
   leading?: React.ReactNode
+  trailing?: React.ReactNode
   className?: string
   label: string
 }) => {
@@ -122,6 +127,7 @@ const FloatingDockMobile = ({
       </AnimatePresence>
       <div className={cn("flex items-center gap-2 rounded-full p-1.5", surface)}>
         {leading}
+        {trailing}
         <button
           ref={toggleRef}
           type="button"
@@ -141,11 +147,13 @@ const FloatingDockMobile = ({
 const FloatingDockDesktop = ({
   items,
   leading,
+  trailing,
   className,
   label,
 }: {
   items: DockItem[]
   leading?: React.ReactNode
+  trailing?: React.ReactNode
   className?: string
   label: string
 }) => {
@@ -165,6 +173,7 @@ const FloatingDockDesktop = ({
           </li>
         ))}
       </ul>
+      {trailing ? <div className="ml-1 flex items-center self-center border-l border-border pl-3">{trailing}</div> : null}
     </motion.nav>
   )
 }

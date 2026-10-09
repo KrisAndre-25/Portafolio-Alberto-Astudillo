@@ -1,6 +1,5 @@
-import { IconEye, IconEyeOff } from "@tabler/icons-react"
+import { ContrastSwitch } from "@/components/ui/contrast-switch"
 import { FloatingDock, type DockItem } from "@/components/ui/floating-dock"
-import { useA11yTheme } from "@/hooks/use-a11y-theme"
 import { useActiveSection } from "@/hooks/use-active-section"
 import { SECTIONS } from "@/config/sections"
 import { asset } from "@/lib/asset"
@@ -19,30 +18,22 @@ function Logo() {
   )
 }
 
-/** Floating dock: logo, one item per section and the contrast toggle. */
+/** Floating dock: logo, one item per section and the day/night contrast switch. */
 export function Navbar() {
   const active = useActiveSection(SECTION_IDS)
-  const { contrast, toggle } = useA11yTheme()
 
-  const items: DockItem[] = [
-    ...SECTIONS.map(({ id, title, Icon }) => ({
-      title,
-      href: `#${id}`,
-      active: active === id,
-      icon: <Icon className="size-full" stroke={1.6} />,
-    })),
-    {
-      title: "Modo alto contraste / daltonismo",
-      onClick: toggle,
-      pressed: contrast,
-      icon: contrast ? <IconEyeOff className="size-full" stroke={1.6} /> : <IconEye className="size-full" stroke={1.6} />,
-    },
-  ]
+  const items: DockItem[] = SECTIONS.map(({ id, title, Icon }) => ({
+    title,
+    href: `#${id}`,
+    active: active === id,
+    icon: <Icon className="size-full" stroke={1.6} />,
+  }))
 
   return (
     <FloatingDock
       items={items}
       leading={<Logo />}
+      trailing={<ContrastSwitch />}
       desktopClassName="fixed inset-x-0 top-4 z-50 w-fit"
       mobileClassName="fixed top-3 right-3 z-50"
     />

@@ -14,10 +14,11 @@ export type ExperienceItem = {
   place: string
   period: string
   tasks: string[]
-  photos: { image: ImageEntry; alt: string }[]
+  /** `position`: CSS object-position for the crop (default "50% 25%"). */
+  photos: { image: ImageEntry; alt: string; position?: string }[]
 }
 
-const photo = (key: string, alt: string) => ({ image: getImage(key), alt })
+const photo = (key: string, alt: string, position?: string) => ({ image: getImage(key), alt, position })
 
 export const experience: ExperienceItem[] = [
   {
@@ -99,6 +100,6 @@ export const experience: ExperienceItem[] = [
       "Guiado de la expedición al Cerro Leoneras, diciembre 2023.",
       "Guiado interpretativo en el Cerro Chena con Fundación Planificable, Día de los Cerros, julio 2023.",
     ],
-    photos: [photo("hitos/cumbre-cerro-leoneras-01", "Alberto en la cumbre rocosa del Cerro Leoneras.")],
+    photos: [photo("hitos/cumbre-cerro-leoneras-01", "Alberto en la cumbre rocosa del Cerro Leoneras, con cordones nevados al fondo.", "50% 72%")],
   },
 ]

@@ -29,7 +29,7 @@ const data: TimelineEntry[] = experience.map((job) => ({
       ) : null}
       {job.photos.length ? (
         <div className={`mt-6 grid gap-3 ${job.photos.length > 1 ? "grid-cols-2" : "grid-cols-1"}`}>
-          {job.photos.map(({ image, alt }) => (
+          {job.photos.map(({ image, alt, position }) => (
             <img
               key={image.variants.sm.src}
               src={image.variants.card?.src ?? image.variants.md.src}
@@ -40,7 +40,8 @@ const data: TimelineEntry[] = experience.map((job) => ({
               alt={alt}
               loading="lazy"
               decoding="async"
-              className="h-32 w-full rounded-xl border border-border object-cover object-[50%_25%] sm:h-44 lg:h-56"
+              style={{ objectPosition: position ?? "50% 25%" }}
+              className={`w-full rounded-xl border border-border object-cover ${job.photos.length > 1 ? "h-32 sm:h-44 lg:h-56" : "h-64 sm:h-80 lg:h-96"}`}
             />
           ))}
         </div>

@@ -282,6 +282,97 @@
     @apply h-px w-8 bg-current opacity-70;
   }
 
+  /* ---- ContrastSwitch (from referencias/theme-switch.tsx) ---------------
+     Night sky = natural theme, day sky = high-contrast theme. The sky colours
+     are the component's own illustration; state is also shown by the knob. */
+  .theme-switch {
+    --sw-night: #2a2a2a;
+    --sw-day: #00a6ff;
+    --sw-sun: #ffcf48;
+    font-size: 14px;
+    position: relative;
+    display: inline-block;
+    flex: none;
+    width: 4em;
+    height: 2.2em;
+    border-radius: 30px;
+    box-shadow: 0 0 10px oklch(0 0 0 / 10%);
+  }
+  .theme-switch input {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+  .theme-switch-slider {
+    position: absolute;
+    inset: 0;
+    cursor: pointer;
+    overflow: hidden;
+    border-radius: 30px;
+    background-color: var(--sw-night);
+    transition: background-color 0.4s;
+  }
+  .theme-switch-slider::before {
+    content: "";
+    position: absolute;
+    left: 0.5em;
+    bottom: 0.5em;
+    width: 1.2em;
+    height: 1.2em;
+    border-radius: 20px;
+    box-shadow: inset 8px -4px 0 0 #fff;
+    transition: 0.4s cubic-bezier(0.81, -0.04, 0.38, 1.5);
+  }
+  .theme-switch input:checked + .theme-switch-slider {
+    background-color: var(--sw-day);
+  }
+  .theme-switch input:checked + .theme-switch-slider::before {
+    transform: translateX(1.8em);
+    box-shadow: inset 15px -4px 0 15px var(--sw-sun);
+  }
+  .theme-switch input:focus-visible + .theme-switch-slider {
+    outline: 2px solid var(--ring);
+    outline-offset: 3px;
+  }
+  [data-theme="contrast"] .theme-switch-slider {
+    box-shadow: inset 0 0 0 2px oklch(0 0 0);
+  }
+  .theme-switch-star {
+    position: absolute;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background-color: #fff;
+    transition: opacity 0.4s;
+  }
+  .theme-switch-star-1 {
+    left: 2.5em;
+    top: 0.5em;
+  }
+  .theme-switch-star-2 {
+    left: 2.2em;
+    top: 1.2em;
+  }
+  .theme-switch-star-3 {
+    left: 3em;
+    top: 0.9em;
+  }
+  .theme-switch input:checked + .theme-switch-slider .theme-switch-star {
+    opacity: 0;
+  }
+  .theme-switch-cloud {
+    position: absolute;
+    bottom: -1.4em;
+    left: -1.1em;
+    width: 3.5em;
+    opacity: 0;
+    transition: opacity 0.4s;
+  }
+  .theme-switch input:checked + .theme-switch-slider .theme-switch-cloud {
+    opacity: 1;
+  }
+
   /* ---- FrameButton (from referencias/button-frame.tsx) -----------------
      A solid block; two pseudo-elements in the block's own colour hide the
      middle of each border so only the corners show. Hover/focus slides them
