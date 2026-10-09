@@ -3,7 +3,7 @@ import { CalafateBranch } from "@/components/decor/botanicals"
 import { Mountains } from "@/components/decor/mountains"
 import { AnimalDecor } from "@/components/layout/animal-decor"
 import { Reveal } from "@/components/layout/reveal"
-import { MarqueeButton } from "@/components/ui/marquee-button"
+import { FrameButton } from "@/components/ui/frame-button"
 import { siteConfig } from "@/config/site.config"
 
 const { contact, availability, cv } = siteConfig
@@ -84,12 +84,12 @@ export function Contact() {
             </Reveal>
 
             <Reveal delay={0.2} className="mt-8 flex flex-wrap gap-3">
-              <MarqueeButton href={contact.whatsapp} target="_blank" rel="noopener noreferrer" variant="moss" icon={<IconBrandWhatsapp />}>
+              <FrameButton href={contact.whatsapp} target="_blank" rel="noopener noreferrer" variant="moss" icon={<IconBrandWhatsapp />}>
                 Escribir por WhatsApp
-              </MarqueeButton>
-              <MarqueeButton href={cv.href} download variant="ghost" icon={<IconDownload />}>
+              </FrameButton>
+              <FrameButton href={cv.href} download variant="dark" icon={<IconDownload />}>
                 {cv.label}
-              </MarqueeButton>
+              </FrameButton>
             </Reveal>
           </div>
 

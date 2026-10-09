@@ -3,7 +3,7 @@ import { NotroFlower } from "@/components/decor/botanicals"
 import { AnimalDecor } from "@/components/layout/animal-decor"
 import { Reveal } from "@/components/layout/reveal"
 import { CardBody, CardContainer, CardItem } from "@/components/ui/3d-card"
-import { MarqueeButton } from "@/components/ui/marquee-button"
+import { FrameButton } from "@/components/ui/frame-button"
 import { siteConfig } from "@/config/site.config"
 import { getImage, srcSet } from "@/data/images"
 
@@ -106,9 +106,9 @@ export function About() {
           </Reveal>
 
           <Reveal delay={0.25} className="mt-9">
-            <MarqueeButton href={siteConfig.cv.href} download variant="ghost" icon={<IconDownload className="size-4" aria-hidden="true" />}>
+            <FrameButton href={siteConfig.cv.href} download variant="dark" icon={<IconDownload className="size-4" aria-hidden="true" />}>
               {siteConfig.cv.label}
-            </MarqueeButton>
+            </FrameButton>
           </Reveal>
         </div>
       </div>

@@ -11,9 +11,9 @@ function Logo() {
     <a
       href="#inicio"
       data-no-underline
-      className="block size-11 shrink-0 overflow-hidden rounded-full ring-1 ring-border transition-transform hover:scale-105"
+      className="relative block size-12 shrink-0 rounded-full bg-bone p-0.5 shadow-[0_0_0_3px_color-mix(in_oklch,var(--sand)_55%,transparent),0_0_28px_-4px_color-mix(in_oklch,var(--sand)_60%,transparent)] transition-transform duration-300 hover:scale-110 md:size-[3.25rem] contrast:shadow-[0_0_0_2px_var(--foreground)]"
     >
-      <img src="/assets/logo/logo-96.webp" alt="Alberto Astudillo" width={44} height={44} className="size-full" />
+      <img src="/assets/logo/logo-192.png" alt="Alberto Astudillo" width={52} height={52} className="size-full rounded-full" />
     </a>
   )
 }
@@ -42,8 +42,8 @@ export function Navbar() {
     <FloatingDock
       items={items}
       leading={<Logo />}
-      desktopClassName="fixed inset-x-0 bottom-5 z-50 w-fit"
-      mobileClassName="fixed right-4 bottom-4 z-50"
+      desktopClassName="fixed inset-x-0 top-4 z-50 w-fit"
+      mobileClassName="fixed top-3 right-3 z-50"
     />
   )
 }

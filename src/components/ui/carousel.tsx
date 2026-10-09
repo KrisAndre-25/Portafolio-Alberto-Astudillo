@@ -109,14 +109,10 @@ const Slide = ({ slide, index, total, current, handleSlideClick, onButtonClick }
               e.stopPropagation();
               onButtonClick?.(index);
             }}
-            className="btn-marquee"
-            data-variant="solid"
-            style={{ "--spacing": `${(button.length * 0.78 + 2).toFixed(2)}em` } as React.CSSProperties}
+            className="btn-frame"
+            data-variant="light"
           >
-            <span className="btn-marquee-label">{button}</span>
-            <span className="btn-marquee-track" aria-hidden="true">
-              {button}
-            </span>
+            <span className="btn-frame-label">{button}</span>
           </button>
         </div>
       </article>

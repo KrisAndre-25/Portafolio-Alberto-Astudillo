@@ -8,7 +8,7 @@
  * - heights in svh so mobile browser bars don't break the curtain;
  * - giant word sized to always fit (checked at 360px);
  * - magnetic effect only for mouse pointers; GSAP scroll animations and the
- *   marquee are skipped for reduced motion;
+ *   marquee are skipped for reduced motion; marquee sits below the top navbar;
  * - typed refs (no `any`), accessible back-to-top button.
  */
 
@@ -306,7 +306,7 @@ export function CinematicFooter() {
           {/* Diagonal marquee */}
           <div
             aria-hidden="true"
-            className="absolute top-10 left-0 z-10 w-full -rotate-2 scale-110 overflow-hidden border-y border-border/60 bg-background/60 py-4 shadow-2xl backdrop-blur-md contrast:border-foreground"
+            className="absolute top-28 left-0 z-10 w-full -rotate-2 scale-110 overflow-hidden border-y border-border/60 bg-background/60 py-4 shadow-2xl backdrop-blur-md contrast:border-foreground"
           >
             <div className="animate-footer-scroll-marquee flex w-max text-xs font-bold tracking-[0.3em] text-muted-foreground uppercase md:text-sm">
               <MarqueeItem />
@@ -315,7 +315,7 @@ export function CinematicFooter() {
           </div>
 
           {/* Centre */}
-          <div className="relative z-10 mx-auto mt-24 flex w-full max-w-5xl flex-1 flex-col items-center justify-center px-6">
+          <div className="relative z-10 mx-auto mt-40 flex w-full max-w-5xl flex-1 flex-col items-center justify-center px-6">
             <h2 ref={headingRef} className="footer-text-glow mb-10 text-center text-[clamp(2.25rem,0.5rem+9vw,7rem)] leading-none font-semibold tracking-tight">
               {footer.heading}
             </h2>
@@ -338,8 +338,8 @@ export function CinematicFooter() {
             </div>
           </div>
 
-          {/* Credits. Extra bottom padding keeps them clear of the floating dock. */}
-          <div className="relative z-20 flex w-full flex-col items-center justify-between gap-4 px-6 pb-28 md:flex-row md:px-12">
+          {/* Credits */}
+          <div className="relative z-20 flex w-full flex-col items-center justify-between gap-4 px-6 pb-8 md:flex-row md:px-12">
             <p className="order-2 text-[11px] font-semibold tracking-widest text-muted-foreground uppercase md:order-1 md:text-xs">
               {footer.copyright}
             </p>

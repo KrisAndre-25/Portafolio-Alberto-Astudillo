@@ -6,7 +6,7 @@
  * - labels show on hover *and* keyboard focus; magnification is off for reduced motion;
  * - a `leading` slot (the logo) on the left;
  * - mobile: a collapsible menu with visible labels, 44px targets, Esc to close.
- * Desktop sits at the bottom centre, mobile at the bottom right.
+ * Placed at the top: icons magnify downwards, labels and the mobile menu open below.
  */
 
 import { cn } from "@/lib/utils"
@@ -92,15 +92,15 @@ const FloatingDockMobile = ({
           <motion.ul
             id={menuId}
             layoutId="nav"
-            className={cn("absolute right-0 bottom-full mb-3 flex w-60 flex-col gap-1 rounded-2xl p-2", surface)}
+            className={cn("absolute top-full right-0 mt-3 flex w-60 flex-col gap-1 rounded-2xl p-2", surface)}
           >
             {items.map((item, idx) => (
               <motion.li
                 key={item.title}
-                initial={{ opacity: 0, y: 10 }}
+                initial={{ opacity: 0, y: -10 }}
                 animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: 10, transition: { delay: idx * 0.03 } }}
-                transition={{ delay: (items.length - 1 - idx) * 0.03 }}
+                exit={{ opacity: 0, y: -10, transition: { delay: (items.length - 1 - idx) * 0.03 } }}
+                transition={{ delay: idx * 0.03 }}
               >
                 <DockAction
                   item={item}
@@ -155,10 +155,10 @@ const FloatingDockDesktop = ({
       aria-label={label}
       onMouseMove={(e) => mouseX.set(e.clientX)}
       onMouseLeave={() => mouseX.set(Infinity)}
-      className={cn("mx-auto hidden h-16 items-end gap-3 rounded-2xl px-3 pb-3 md:flex", surface, className)}
+      className={cn("mx-auto hidden h-[4.25rem] items-start gap-3 rounded-2xl px-3 pt-3 md:flex", surface, className)}
     >
-      {leading ? <div className="mr-1 flex h-10 items-center border-r border-border pr-3">{leading}</div> : null}
-      <ul className="flex items-end gap-3">
+      {leading ? <div className="mr-1 flex items-center self-center border-r border-border pr-3">{leading}</div> : null}
+      <ul className="flex items-start gap-3">
         {items.map((item) => (
           <li key={item.title}>
             <IconContainer mouseX={mouseX} item={item} />
@@ -261,10 +261,10 @@ function IconContainer({ mouseX, item }: { mouseX: MotionValue<number>; item: Do
           {hovered && (
             <motion.span
               role="tooltip"
-              initial={{ opacity: 0, y: 10, x: "-50%" }}
+              initial={{ opacity: 0, y: -10, x: "-50%" }}
               animate={{ opacity: 1, y: 0, x: "-50%" }}
-              exit={{ opacity: 0, y: 2, x: "-50%" }}
-              className="pointer-events-none absolute -top-9 left-1/2 w-fit rounded-md border border-border bg-popover px-2 py-0.5 text-xs whitespace-pre text-popover-foreground"
+              exit={{ opacity: 0, y: -2, x: "-50%" }}
+              className="pointer-events-none absolute top-full left-1/2 mt-2 w-fit rounded-md border border-border bg-popover px-2 py-0.5 text-xs whitespace-pre text-popover-foreground"
             >
               {item.title}
             </motion.span>
@@ -274,7 +274,7 @@ function IconContainer({ mouseX, item }: { mouseX: MotionValue<number>; item: Do
           {item.icon}
         </motion.span>
         {/* Non-colour cue for the current section. */}
-        {item.active ? <span aria-hidden="true" className="absolute -bottom-2 h-1 w-1 rounded-full bg-foreground" /> : null}
+        {item.active ? <span aria-hidden="true" className="absolute -top-2 h-1 w-1 rounded-full bg-foreground" /> : null}
       </motion.div>
     </DockAction>
   )

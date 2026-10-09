@@ -206,8 +206,9 @@
   p {
     text-wrap: pretty;
   }
+  /* Room for the fixed top navbar when jumping to a section. */
   section[id] {
-    scroll-margin-top: 1.5rem;
+    scroll-margin-top: 6rem;
   }
   ::selection {
     background: color-mix(in oklch, var(--moss) 45%, transparent);
@@ -280,104 +281,169 @@
     @apply h-px w-8 bg-current opacity-70;
   }
 
-  /* ---- MarqueeButton (from button-23, rebuilt with theme tokens) -------- */
-  .btn-marquee {
-    --btn-bg: var(--bone);
-    --btn-fg: var(--forest);
-    --btn-border: var(--bone);
+  /* ---- FrameButton (from referencias/button-frame.tsx) -----------------
+     A solid block; two pseudo-elements in the block's own colour hide the
+     middle of each border so only the corners show. Hover/focus slides them
+     away (top/bottom first, sides 0.25s later) and the frame closes. */
+  .btn-frame {
+    --btn-bg: var(--card);
+    --btn-line: var(--bone);
+    --btn-fg: var(--bone);
     position: relative;
-    display: inline-grid;
-    place-items: center;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
     min-height: 2.875rem;
-    padding: 0.75rem 1.75rem;
-    overflow: hidden;
-    border: 2px solid var(--btn-border);
-    border-radius: 999px;
+    padding: 0.8rem 1.6rem;
+    border: 2px solid var(--btn-line);
     background: var(--btn-bg);
     color: var(--btn-fg);
     font-size: 0.875rem;
-    font-weight: 700;
-    letter-spacing: 0.08em;
-    line-height: 1.5;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    line-height: 1.2;
     text-transform: uppercase;
     white-space: nowrap;
     cursor: pointer;
     -webkit-tap-highlight-color: transparent;
-    /* Keeps the clipped marquee inside the rounded shape in Safari. */
-    -webkit-mask-image: -webkit-radial-gradient(#000, #fff);
-    transition:
-      background-color 0.2s ease,
-      color 0.2s ease,
-      transform 0.2s ease;
+    transition: transform 0.2s ease;
   }
-  .btn-marquee[data-variant="outline"] {
-    --btn-bg: transparent;
-    --btn-fg: var(--bone);
-    --btn-border: color-mix(in oklch, var(--bone) 70%, transparent);
+  .btn-frame::before,
+  .btn-frame::after {
+    content: "";
+    position: absolute;
+    background: var(--btn-bg);
+    transition: transform 0.3s ease-in-out;
   }
-  .btn-marquee[data-variant="moss"] {
-    --btn-bg: var(--moss);
-    --btn-fg: var(--forest);
-    --btn-border: var(--moss);
+  .btn-frame::before {
+    top: 6px;
+    left: -2px;
+    width: calc(100% + 4px);
+    height: calc(100% - 12px);
+    transform: scaleY(1);
   }
-  /* On regular page backgrounds (not over media) outline uses foreground. */
-  .btn-marquee[data-variant="ghost"] {
-    --btn-bg: transparent;
-    --btn-fg: var(--foreground);
-    --btn-border: color-mix(in oklch, var(--foreground) 55%, transparent);
+  .btn-frame::after {
+    top: -2px;
+    left: 6px;
+    width: calc(100% - 12px);
+    height: calc(100% + 4px);
+    transform: scaleX(1);
+    transition-delay: 0.25s;
   }
-  [data-theme="contrast"] .btn-marquee {
-    --btn-bg: oklch(1 0 0);
-    --btn-fg: oklch(0 0 0);
-    --btn-border: oklch(0 0 0);
+  .btn-frame:hover::before,
+  .btn-frame:focus-visible::before {
+    transform: scaleY(0);
   }
-  .btn-marquee:active {
+  .btn-frame:hover::after,
+  .btn-frame:focus-visible::after {
+    transform: scaleX(0);
+  }
+  .btn-frame:active {
     transform: translateY(1px);
   }
-  .btn-marquee > span {
-    grid-area: 1 / 1;
+  .btn-frame-label {
+    position: relative;
+    z-index: 1;
     display: inline-flex;
     align-items: center;
     gap: 0.6em;
-    transition: opacity 0.2s ease;
   }
-  .btn-marquee .btn-marquee-icon {
+  .btn-frame-icon {
     display: inline-block;
     width: 1.15em;
     height: 1.15em;
     flex: none;
   }
-  .btn-marquee .btn-marquee-icon svg {
+  .btn-frame-icon svg {
     width: 100%;
     height: 100%;
   }
-  .btn-marquee .btn-marquee-track {
-    --start: 0em;
+  .btn-frame[data-variant="light"] {
+    --btn-bg: var(--bone);
+    --btn-line: var(--forest);
+    --btn-fg: var(--forest);
+  }
+  .btn-frame[data-variant="moss"] {
+    --btn-bg: var(--moss);
+    --btn-line: var(--forest);
+    --btn-fg: var(--forest);
+  }
+  /* Contrast theme: white block, black frame and text. */
+  [data-theme="contrast"] .btn-frame {
+    --btn-bg: oklch(1 0 0);
+    --btn-line: oklch(0 0 0);
+    --btn-fg: oklch(0 0 0);
+  }
+
+  /* ---- Tree3D (from referencias/tree-loader.tsx) ------------------------ */
+  .tree3d-wrap {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: calc(50px * var(--tree-scale, 1));
+    height: calc(150px * var(--tree-scale, 1));
+    perspective: 900px;
+  }
+  .tree3d {
+    position: relative;
+    width: 50px;
+    height: 50px;
+    margin-top: 40px;
+    transform-style: preserve-3d;
+    transform: scale(var(--tree-scale, 1)) rotateX(-20deg) rotateY(30deg);
+    animation: tree3d-spin 9s linear infinite;
+  }
+  .tree3d > div {
+    position: absolute;
+    top: -50px;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    transform-style: preserve-3d;
+    transform: translateY(calc(25px * var(--x, 0))) translateZ(0);
+  }
+  .tree3d-branch span {
     position: absolute;
     inset: 0;
-    justify-content: center;
-    opacity: 0;
-    animation: btn-marquee var(--duration, 1s) linear infinite paused;
-    text-shadow:
-      currentColor var(--spacing) 0,
-      currentColor calc(var(--spacing) * -1) 0,
-      currentColor calc(var(--spacing) * -2) 0;
+    background: linear-gradient(90deg, color-mix(in oklch, var(--moss) 80%, var(--forest)), var(--moss));
+    clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+    border-bottom: 5px solid oklch(0 0 0 / 10%);
+    transform-origin: bottom;
+    transform: rotateY(calc(90deg * var(--i))) rotateX(30deg) translateZ(28.5px);
   }
-  @media (hover: hover) and (prefers-reduced-motion: no-preference) {
-    .btn-marquee:hover .btn-marquee-track,
-    .btn-marquee:focus-visible .btn-marquee-track {
-      animation-play-state: running;
-      opacity: 1;
-    }
-    .btn-marquee:hover .btn-marquee-label,
-    .btn-marquee:focus-visible .btn-marquee-label {
-      opacity: 0;
-    }
+  .tree3d-stem span {
+    position: absolute;
+    top: 110px;
+    left: calc(50% - 7.5px);
+    width: 15px;
+    height: 50%;
+    background: linear-gradient(90deg, var(--bark), var(--clay));
+    border-bottom: 5px solid oklch(0 0 0 / 10%);
+    transform-origin: bottom;
+    transform: rotateY(calc(90deg * var(--i))) translateZ(7.5px);
   }
-  @media (prefers-reduced-motion: reduce) {
-    .btn-marquee:hover {
-      --btn-bg: color-mix(in oklch, var(--bone) 85%, var(--moss));
-    }
+  .tree3d-shadow {
+    position: absolute;
+    inset: 0;
+    background: oklch(0 0 0 / 40%);
+    filter: blur(20px);
+    transform-style: preserve-3d;
+    transform: rotateX(90deg) translateZ(-65px);
+  }
+  [data-theme="contrast"] .tree3d-branch span {
+    background: linear-gradient(90deg, oklch(0.35 0 0), oklch(0.55 0 0));
+  }
+  [data-theme="contrast"] .tree3d-stem span {
+    background: oklch(0.2 0 0);
+  }
+}
+
+@keyframes tree3d-spin {
+  from {
+    transform: scale(var(--tree-scale, 1)) rotateX(-20deg) rotateY(360deg);
+  }
+  to {
+    transform: scale(var(--tree-scale, 1)) rotateX(-20deg) rotateY(0deg);
   }
 }
 
@@ -413,14 +479,5 @@
 @keyframes hero-slide {
   from {
     transform: translateY(24px);
-  }
-}
-
-@keyframes btn-marquee {
-  from {
-    transform: translateX(var(--start));
-  }
-  to {
-    transform: translateX(var(--spacing));
   }
 }

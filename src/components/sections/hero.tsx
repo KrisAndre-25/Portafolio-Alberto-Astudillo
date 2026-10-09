@@ -1,7 +1,7 @@
 import { IconChevronDown } from "@tabler/icons-react"
 import { useEffect, useState } from "react"
 import { MountainsStatic } from "@/components/decor/mountains-static"
-import { MarqueeButton } from "@/components/ui/marquee-button"
+import { FrameButton } from "@/components/ui/frame-button"
 import { siteConfig } from "@/config/site.config"
 import { useReducedMotion, useSaveData } from "@/hooks/use-media-query"
 
@@ -76,10 +76,10 @@ export function Hero() {
             {hero.tagline}
           </p>
           <div className="mt-9 flex flex-wrap gap-3 hero-enter" style={{ animationDelay: "0.54s" }}>
-            <MarqueeButton href={hero.primaryCta.href}>{hero.primaryCta.label}</MarqueeButton>
-            <MarqueeButton href={hero.secondaryCta.href} variant="outline">
+            <FrameButton variant="light" href={hero.primaryCta.href}>{hero.primaryCta.label}</FrameButton>
+            <FrameButton href={hero.secondaryCta.href} variant="dark">
               {hero.secondaryCta.label}
-            </MarqueeButton>
+            </FrameButton>
           </div>
         </div>
       </div>

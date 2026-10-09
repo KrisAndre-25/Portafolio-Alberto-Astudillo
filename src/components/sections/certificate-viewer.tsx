@@ -1,6 +1,6 @@
 import { IconDownload, IconExternalLink } from "@tabler/icons-react"
 import { AnimalDecor } from "@/components/layout/animal-decor"
-import { MarqueeButton } from "@/components/ui/marquee-button"
+import { FrameButton } from "@/components/ui/frame-button"
 import { ModalDialog } from "@/components/ui/modal-dialog"
 import type { Certificate } from "@/data/certificates"
 import { useMediaQuery } from "@/hooks/use-media-query"
@@ -49,12 +49,12 @@ export default function CertificateViewer({ cert, onClose }: { cert: Certificate
             )}
           </div>
           <div className="mt-4 flex flex-wrap gap-3">
-            <MarqueeButton href={cert.file} download icon={<IconDownload />}>
+            <FrameButton variant="light" href={cert.file} download icon={<IconDownload />}>
               Descargar
-            </MarqueeButton>
-            <MarqueeButton href={cert.file} target="_blank" rel="noopener noreferrer" variant="outline" icon={<IconExternalLink />}>
+            </FrameButton>
+            <FrameButton href={cert.file} target="_blank" rel="noopener noreferrer" variant="dark" icon={<IconExternalLink />}>
               Abrir en pestaña nueva
-            </MarqueeButton>
+            </FrameButton>
           </div>
           {cert.redacted ? (
             <p className="mt-3 text-xs text-on-media/70">Por privacidad, el número de RUT está cubierto en esta copia.</p>

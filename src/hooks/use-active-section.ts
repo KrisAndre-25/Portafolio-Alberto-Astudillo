@@ -1,24 +1,40 @@
 import { useEffect, useState } from "react"
 
 /**
- * Id of the section currently crossing the middle of the viewport, for the
- * dock's "you are here" state.
+ * Id of the current section: the last one whose top has passed the middle of
+ * the viewport. Computed on scroll (once per frame), so it stays right after
+ * instant jumps and in the footer, where no section crosses the middle.
  */
 export function useActiveSection(ids: readonly string[]): string {
   const [active, setActive] = useState(ids[0] ?? "")
 
   useEffect(() => {
-    const elements = ids.map((id) => document.getElementById(id)).filter((el): el is HTMLElement => el !== null)
-    if (elements.length === 0) return
-    const observer = new IntersectionObserver(
-      (entries) => {
-        for (const entry of entries) if (entry.isIntersecting) setActive(entry.target.id)
-      },
-      // A thin band in the middle of the screen: exactly one section is in it.
-      { rootMargin: "-45% 0px -50% 0px" },
-    )
-    elements.forEach((el) => observer.observe(el))
-    return () => observer.disconnect()
+    let frame = 0
+    const update = () => {
+      frame = 0
+      const line = window.innerHeight * 0.45
+      let current = ids[0] ?? ""
+      for (const id of ids) {
+        const el = document.getElementById(id)
+        if (el && el.getBoundingClientRect().top <= line) current = id
+      }
+      setActive(current)
+    }
+    const onScroll = () => {
+      if (!frame) frame = requestAnimationFrame(update)
+    }
+    update()
+    window.addEventListener("scroll", onScroll, { passive: true })
+    window.addEventListener("resize", onScroll)
+    // Sections mount lazily after hydration: re-check when the DOM grows.
+    const mo = new MutationObserver(onScroll)
+    mo.observe(document.body, { childList: true, subtree: true })
+    return () => {
+      cancelAnimationFrame(frame)
+      window.removeEventListener("scroll", onScroll)
+      window.removeEventListener("resize", onScroll)
+      mo.disconnect()
+    }
   }, [ids])
 
   return active
