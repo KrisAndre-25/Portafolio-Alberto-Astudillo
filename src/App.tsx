@@ -1,25 +1,28 @@
+import { Navbar } from "@/components/layout/navbar"
 import { ScrollProgress } from "@/components/layout/scroll-progress"
 import { SectionHeading } from "@/components/layout/section-heading"
-import { MarqueeButton } from "@/components/ui/marquee-button"
-import { siteConfig } from "@/config/site.config"
-import { setContrastTheme, useA11yTheme } from "@/hooks/use-a11y-theme"
+import { Hero } from "@/components/sections/hero"
+import { SECTIONS } from "@/config/sections"
 
-// Temporary shell: sections are added phase by phase.
 function App() {
-  const { contrast } = useA11yTheme()
   return (
     <>
+      <a
+        href="#sobre-mi"
+        className="sr-only z-[80] rounded-full bg-foreground px-4 py-2 text-background focus:not-sr-only focus:fixed focus:top-4 focus:left-4"
+      >
+        Saltar al contenido
+      </a>
       <ScrollProgress />
-      <main className="mx-auto grid min-h-[200dvh] max-w-5xl content-start gap-10 px-4 py-24">
-        <section id="inicio" aria-labelledby="inicio-title">
-          <SectionHeading id="inicio-title" eyebrow={siteConfig.hero.eyebrow} title={siteConfig.name} intro={siteConfig.hero.tagline} />
-          <div className="mt-8 flex flex-wrap gap-4">
-            <MarqueeButton href={siteConfig.hero.primaryCta.href}>{siteConfig.hero.primaryCta.label}</MarqueeButton>
-            <MarqueeButton variant="ghost" onClick={() => setContrastTheme(!contrast)}>
-              {contrast ? "Tema natural" : "Alto contraste"}
-            </MarqueeButton>
-          </div>
-        </section>
+      <Navbar />
+      <main className="relative z-10 bg-background">
+        <Hero />
+        {/* Placeholder sections: replaced phase by phase. */}
+        {SECTIONS.slice(1).map((s) => (
+          <section key={s.id} id={s.id} aria-labelledby={`${s.id}-title`} className="mx-auto min-h-[70svh] max-w-6xl px-4 py-24 sm:px-8">
+            <SectionHeading id={`${s.id}-title`} eyebrow="Próximamente" title={s.title} />
+          </section>
+        ))}
       </main>
     </>
   )
