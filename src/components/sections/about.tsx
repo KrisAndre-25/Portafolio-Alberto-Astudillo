@@ -1,5 +1,6 @@
 import { IconDownload, IconFirstAidKit, IconLanguage, IconMapPin, IconSchool, IconTrees } from "@tabler/icons-react"
 import { NotroFlower } from "@/components/decor/botanicals"
+import { AnimalDecor } from "@/components/layout/animal-decor"
 import { Reveal } from "@/components/layout/reveal"
 import { CardBody, CardContainer, CardItem } from "@/components/ui/3d-card"
 import { MarqueeButton } from "@/components/ui/marquee-button"
@@ -20,6 +21,12 @@ const facts = [
 export function About() {
   return (
     <section id="sobre-mi" aria-labelledby="sobre-mi-title" className="relative mx-auto max-w-7xl px-4 py-24 sm:px-8 md:py-32">
+      <AnimalDecor
+        slug="condor"
+        shape="leaf"
+        travel={50}
+        className="mb-10 ml-auto w-40 sm:w-48 lg:absolute lg:top-10 lg:left-[30%] lg:mb-0 lg:w-56"
+      />
       <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-[minmax(0,5fr)_minmax(0,6fr)] lg:gap-20">
         {/* 3D portrait over a soft green/earth light */}
         <div className="relative order-2 min-w-0 lg:order-1">

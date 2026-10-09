@@ -1,4 +1,5 @@
 import { CalafateBranch, FernSprig } from "@/components/decor/botanicals"
+import { AnimalDecor } from "@/components/layout/animal-decor"
 import { Reveal } from "@/components/layout/reveal"
 import { SectionHeading } from "@/components/layout/section-heading"
 import { hardSkills, softSkills, type Skill } from "@/data/skills"
@@ -37,6 +38,13 @@ export function Skills() {
       <FernSprig className="pointer-events-none absolute top-16 -right-6 hidden w-28 opacity-50 lg:block" />
       <CalafateBranch className="pointer-events-none absolute bottom-10 -left-8 hidden w-56 opacity-40 lg:block" />
       <div className="mx-auto max-w-7xl px-4 py-24 sm:px-8 md:py-32">
+        <div className="relative">
+          <AnimalDecor
+            slug="zorzal"
+            className="mx-auto mb-8 w-32 sm:w-40 lg:absolute lg:top-0 lg:right-[6%] lg:mb-0 lg:w-44"
+            flip
+          />
+        </div>
         <SectionHeading
           id="habilidades-title"
           eyebrow="Habilidades"

@@ -41,6 +41,7 @@
   --color-sand: var(--sand);
   --color-bark: var(--bark);
   --color-bone: var(--bone);
+  --color-paper: var(--paper);
   --color-overlay: var(--overlay);
   --color-on-media: var(--on-media);
 
@@ -81,6 +82,7 @@
   --sand: oklch(0.86 0.045 82); /* sand */
   --bark: oklch(0.42 0.045 55); /* bark */
   --bone: oklch(0.95 0.014 85); /* bone white */
+  --paper: oklch(0.93 0.02 85); /* field-notebook paper behind illustrations */
   --overlay: oklch(0.16 0.02 160); /* tint over photos and video */
   --on-media: oklch(0.97 0.01 85); /* text over photos and video */
 
@@ -134,6 +136,7 @@
   --sand: oklch(0.88 0 0);
   --bark: oklch(0.2 0 0);
   --bone: oklch(1 0 0);
+  --paper: oklch(1 0 0);
   --overlay: oklch(0 0 0);
   --on-media: oklch(1 0 0);
 

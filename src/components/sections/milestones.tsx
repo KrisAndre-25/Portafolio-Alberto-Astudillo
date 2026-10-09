@@ -1,5 +1,6 @@
 import { useState } from "react"
 import { Mountains } from "@/components/decor/mountains"
+import { AnimalDecor } from "@/components/layout/animal-decor"
 import { Reveal } from "@/components/layout/reveal"
 import { SectionHeading } from "@/components/layout/section-heading"
 import Carousel, { type SlideData } from "@/components/ui/carousel"
@@ -27,7 +28,12 @@ export function Milestones() {
 
   return (
     <section id="hitos" aria-labelledby="hitos-title" className="relative overflow-hidden pt-24 md:pt-32">
-      <div className="mx-auto max-w-7xl px-4 sm:px-8">
+      <div className="relative mx-auto max-w-7xl px-4 sm:px-8">
+        <AnimalDecor
+          slug="puma"
+          shape="hill"
+          className="mx-auto mb-10 w-44 sm:w-52 lg:absolute lg:top-0 lg:right-12 lg:mb-0 lg:w-64"
+        />
         <SectionHeading
           id="hitos-title"
           eyebrow="Hitos"
@@ -38,13 +44,14 @@ export function Milestones() {
       <Reveal className="mt-14 pb-28">
         <Carousel slides={slides} label="Hitos fotográficos" onButtonClick={setOpenIndex} />
       </Reveal>
-      <Mountains />
+      <Mountains subtle />
 
       <Lightbox
         open={open !== null}
         onClose={() => setOpenIndex(null)}
         title={open?.title ?? ""}
         photos={open?.photos ?? []}
+        aside={<AnimalDecor slug="picaflor" shape="leaf" travel={0} className="absolute bottom-10 left-8 hidden w-40 2xl:block" />}
       />
     </section>
   )
